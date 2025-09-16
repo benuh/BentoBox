@@ -58,13 +58,13 @@ export default function Home() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.5, delay: 1, ease: "easeOut" }}
-        className="flex justify-center relative"
+        className="flex justify-center relative px-4 sm:px-0"
       >
         <img
           src="/View_of_Dresden_by_Moonlight.jpg"
           alt="View of Dresden by Moonlight"
           className="rounded-lg shadow-lg w-full h-auto"
-          style={{ maxWidth: '51rem' }}
+          style={{ maxWidth: '90vw' }}
         />
 
         {/* Name overlay on top left */}
@@ -72,17 +72,18 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 2, ease: "easeOut", delay: 0.5 }}
-          className="absolute top-6 left-6 text-left"
+          className="absolute text-left"
+          style={{ top: '3%', left: '3%' }}
         >
           <div
-            className="text-5xl md:text-6xl lg:text-7xl"
             style={{
               color: 'white',
               fontFamily: '"Bodoni Moda", serif',
               fontWeight: 400,
               letterSpacing: '0.02em',
               lineHeight: 0.9,
-              textShadow: '2px 2px 4px rgba(0,0,0,0.5)'
+              textShadow: '2px 2px 4px rgba(0,0,0,0.5)',
+              fontSize: 'clamp(2rem, 6vw, 5rem)'
             }}
           >
             <div>Benjamin</div>
@@ -95,17 +96,18 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 2, ease: "easeOut", delay: 2 }}
-          className="absolute bottom-6 left-6 text-left max-w-md"
+          className="absolute text-left"
+          style={{ bottom: '3%', left: '3%', maxWidth: '45%' }}
         >
           <div
-            className="text-sm md:text-base lg:text-lg"
             style={{
               color: 'white',
               fontFamily: '"Cinzel", serif',
               fontWeight: 400,
               letterSpacing: '0.02em',
               lineHeight: 1.5,
-              textShadow: '2px 2px 4px rgba(0,0,0,0.7)'
+              textShadow: '2px 2px 4px rgba(0,0,0,0.7)',
+              fontSize: 'clamp(0.7rem, 2vw, 1.2rem)'
             }}
           >
             &ldquo;{displayedText}
@@ -120,19 +122,20 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 2, ease: "easeOut", delay: 1.5 }}
-          className="absolute bottom-6 right-6 text-right"
+          className="absolute text-right"
+          style={{ bottom: '3%', right: '3%' }}
         >
           <div
-            className="text-lg md:text-xl lg:text-2xl"
             style={{
               color: 'white',
               fontFamily: '"Bodoni Moda", serif',
               fontWeight: 400,
               letterSpacing: '0.02em',
-              textShadow: '2px 2px 4px rgba(0,0,0,0.5)'
+              textShadow: '2px 2px 4px rgba(0,0,0,0.5)',
+              fontSize: 'clamp(0.9rem, 2.5vw, 1.8rem)'
             }}
           >
-            <div className="text-sm opacity-80">New York</div>
+            <div style={{ fontSize: '0.8em', opacity: 0.8 }}>New York</div>
             <div>{time}</div>
           </div>
         </motion.div>
