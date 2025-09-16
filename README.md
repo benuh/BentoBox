@@ -1,32 +1,58 @@
-# BentoBox - Portfolio Website
+# Benjamin Hu - Portfolio Website
 
-A static portfolio website built with HTML, CSS, and JavaScript.
+A modern, responsive portfolio website built with Next.js, TailwindCSS, and smooth animations.
 
-## Running Locally
+## 🚀 Features
 
-### Prerequisites
-- Python 3.x installed
+- **Modern Design**: Clean, minimalist interface with professional aesthetics
+- **Smooth Animations**: GSAP and Framer Motion for engaging user interactions
+- **Responsive Layout**: Optimized for all device sizes
+- **Fast Performance**: Built with Next.js 15 and Turbopack
+- **Type Safe**: Full TypeScript support
 
-### Quick Start
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js 15
+- **Styling**: TailwindCSS
+- **Animations**: GSAP + Framer Motion
+- **Language**: TypeScript
+- **Development**: Turbopack for fast builds
+
+## 📦 Installation
+
 1. Clone the repository
-2. Navigate to the project directory:
+2. Install dependencies:
    ```bash
-   cd BentoBox
-   ```
-3. Start the local server:
-   ```bash
-   npm start
+   npm install
    ```
 
-   Or alternatively:
+3. Start the development server:
    ```bash
-   python3 -m http.server 8000
+   npm run dev
    ```
 
-4. Open your browser and go to: http://localhost:8000
+4. Open [http://localhost:3000](http://localhost:3000) to view the site
 
-### Available Scripts
-- `npm start` - Start local development server on port 8000
-- `npm run dev` - Same as start
+## 🎨 Sections
 
-The site will be available at http://localhost:8000
+- **Hero**: Introduction and call-to-action
+- **About**: Personal background and skills
+- **Projects**: Portfolio showcase
+- **Contact**: Get in touch information
+
+## 🚀 Deployment
+
+The site can be easily deployed on Vercel, Netlify, or any static hosting platform.
+
+For Vercel deployment:
+```bash
+npm run build
+```
+
+## 📝 Customization
+
+Edit `src/app/page.tsx` to modify content and sections. The site uses TailwindCSS for styling and includes smooth scroll animations.
+
+## 📄 License
+
+© 2025 Benjamin Hu. All rights reserved.
