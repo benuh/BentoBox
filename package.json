@@ -1,0 +1,8 @@
+{
+  "name": "bentobox",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "echo 'Starting server at http://localhost:8000' && python3 -m http.server 8000",
+    "dev": "echo 'Starting server at http://localhost:8000' && python3 -m http.server 8000"
+  }
+}
