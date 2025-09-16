@@ -6,6 +6,8 @@ import { gsap } from 'gsap'
 
 export default function Home() {
   const [time, setTime] = useState('')
+  const [displayedText, setDisplayedText] = useState('')
+  const quote = "We are all visitors to this time, this place. We are just passing through. Our purpose here is to observe, to learn, to grow, to love... and then we return home."
 
   useEffect(() => {
     gsap.fromTo('.name-text',
@@ -28,7 +30,26 @@ export default function Home() {
     updateTime()
     const interval = setInterval(updateTime, 60000)
 
-    return () => clearInterval(interval)
+    // Typewriter effect for quote
+    const startTypewriter = () => {
+      let currentIndex = 0
+      const typeInterval = setInterval(() => {
+        if (currentIndex <= quote.length) {
+          setDisplayedText(quote.slice(0, currentIndex))
+          currentIndex++
+        } else {
+          clearInterval(typeInterval)
+        }
+      }, 50) // Adjust speed here (lower = faster)
+    }
+
+    // Start typewriter effect after a delay
+    const typewriterDelay = setTimeout(startTypewriter, 3000)
+
+    return () => {
+      clearInterval(interval)
+      clearTimeout(typewriterDelay)
+    }
   }, [])
 
   return (
@@ -69,7 +90,7 @@ export default function Home() {
           </div>
         </motion.div>
 
-        {/* Quote on bottom left */}
+        {/* Quote on bottom left with typewriter effect */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -80,14 +101,17 @@ export default function Home() {
             className="text-sm md:text-base lg:text-lg"
             style={{
               color: 'white',
-              fontFamily: '"Bodoni Moda", serif',
+              fontFamily: '"Cinzel", serif',
               fontWeight: 400,
-              letterSpacing: '0.01em',
-              lineHeight: 1.4,
-              textShadow: '2px 2px 4px rgba(0,0,0,0.5)'
+              letterSpacing: '0.02em',
+              lineHeight: 1.5,
+              textShadow: '2px 2px 4px rgba(0,0,0,0.7)'
             }}
           >
-            "We are all visitors to this time, this place. We are just passing through. Our purpose here is to observe, to learn, to grow, to love... and then we return home."
+            &ldquo;{displayedText}
+            {displayedText.length < quote.length && (
+              <span className="animate-pulse">|</span>
+            )}&rdquo;
           </div>
         </motion.div>
 
