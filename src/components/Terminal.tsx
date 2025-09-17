@@ -20,7 +20,7 @@ export default function Terminal({ className }: TerminalProps) {
   const tabs = [
     { id: 'intro', name: 'intro.md', active: true },
     { id: 'skills', name: 'skills.py', active: false },
-    { id: 'projects', name: 'projects.json', active: false }
+    { id: 'projects', name: 'projects.html', active: false }
   ]
 
   const skillsData = {
@@ -386,10 +386,10 @@ export default function Terminal({ className }: TerminalProps) {
             }}
           >
             <div className="text-green-400 mb-4">
-              $ cat projects.json
+              $ open projects.html
             </div>
             <div className="text-gray-300">
-              Fetching project portfolio...
+              Loading project portfolio...
             </div>
           </motion.div>
         )}
