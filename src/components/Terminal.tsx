@@ -1,13 +1,18 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback, useMemo } from 'react'
 import { motion } from 'framer-motion'
+import { useTheme } from '../contexts/ThemeContext'
+import { themes } from '../utils/theme'
 
 interface TerminalProps {
   className?: string
+  style?: React.CSSProperties
 }
 
-export default function Terminal({ className }: TerminalProps) {
+export default function Terminal({ className, style }: TerminalProps) {
+  const { theme } = useTheme()
+  const currentTheme = themes[theme]
   const [activeTab, setActiveTab] = useState('intro')
   const [skillsInput, setSkillsInput] = useState('')
   const [skillsOutput, setSkillsOutput] = useState('all')
@@ -15,7 +20,6 @@ export default function Terminal({ className }: TerminalProps) {
   const [selectedOption, setSelectedOption] = useState(0)
   const [typedContent, setTypedContent] = useState('')
   const [isTyping, setIsTyping] = useState(false)
-  const [currentTypingIndex, setCurrentTypingIndex] = useState(0)
 
   const tabs = [
     { id: 'intro', name: 'intro.md', active: true },
@@ -23,7 +27,7 @@ export default function Terminal({ className }: TerminalProps) {
     { id: 'projects', name: 'projects.html', active: false }
   ]
 
-  const skillsData = {
+  const skillsData = useMemo(() => ({
     languages: [
       "Python", "JavaScript", "TypeScript",
       "C", "C++", "C#", "Java", "Swift",
@@ -52,7 +56,7 @@ export default function Terminal({ className }: TerminalProps) {
       "Physical Modeling", "OpenGL",
       "Computer Vision", "Computer Graphics"
     ]
-  }
+  }), [])
 
   // Get filtered autocomplete options
   const getAutocompleteOptions = () => {
@@ -109,54 +113,48 @@ export default function Terminal({ className }: TerminalProps) {
   }
 
   // Generate content string for typewriter effect
-  const generateSkillsContent = (outputType: string) => {
+  const generateSkillsContent = useCallback((outputType: string) => {
     if (outputType === 'all') {
       let content = 'skills = {\n'
       Object.entries(skillsData).forEach(([key, values], index) => {
-        content += `  "${key}": [\n`
-        values.forEach((skill, skillIndex) => {
-          content += `    "${skill}"${skillIndex < values.length - 1 ? ',' : ''}\n`
-        })
-        content += `  ]${index < Object.entries(skillsData).length - 1 ? ',' : ''}\n`
+        // More compact format - all skills on one line per category
+        const skillsStr = values.map(skill => `"${skill}"`).join(', ')
+        content += `  "${key}": [${skillsStr}]${index < Object.entries(skillsData).length - 1 ? ',' : ''}\n`
       })
       content += '}\n'
       return content
     } else if (outputType !== 'error' && skillsData[outputType as keyof typeof skillsData]) {
-      let content = `skills["${outputType}"] = [\n`
-      skillsData[outputType as keyof typeof skillsData].forEach((skill, index) => {
-        content += `  "${skill}"${index < skillsData[outputType as keyof typeof skillsData].length - 1 ? ',' : ''}\n`
-      })
-      content += ']\n'
+      const skills = skillsData[outputType as keyof typeof skillsData]
+      const skillsStr = skills.map(skill => `"${skill}"`).join(', ')
+      const content = `skills["${outputType}"] = [${skillsStr}]\n`
       return content
     } else if (outputType === 'error') {
       return `KeyError: Invalid key. Available keys: ${Object.keys(skillsData).join(', ')}\n`
     }
     return ''
-  }
+  }, [skillsData])
 
   // Typewriter effect
   useEffect(() => {
     if (activeTab === 'skills') {
       const content = generateSkillsContent(skillsOutput)
       setIsTyping(true)
-      setCurrentTypingIndex(0)
       setTypedContent('')
 
+      let currentIndex = 0
       const typeInterval = setInterval(() => {
-        setCurrentTypingIndex((prevIndex) => {
-          if (prevIndex >= content.length) {
-            setIsTyping(false)
-            clearInterval(typeInterval)
-            return prevIndex
-          }
-          setTypedContent(content.slice(0, prevIndex + 1))
-          return prevIndex + 1
-        })
+        if (currentIndex >= content.length) {
+          setIsTyping(false)
+          clearInterval(typeInterval)
+          return
+        }
+        setTypedContent(content.slice(0, currentIndex + 1))
+        currentIndex += 1
       }, 1) // Adjust speed here (lower = faster)
 
       return () => clearInterval(typeInterval)
     }
-  }, [skillsOutput, activeTab])
+  }, [skillsOutput, activeTab, generateSkillsContent])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
@@ -168,37 +166,49 @@ export default function Terminal({ className }: TerminalProps) {
   }
 
   return (
-    <div className={`bg-gray-900 rounded-lg overflow-hidden shadow-2xl ${className}`}>
+    <div className={`rounded-lg overflow-hidden ${theme === 'dark' ? 'shadow-2xl' : 'shadow-sm'} ${className}`}
+         style={{ backgroundColor: currentTheme.terminalBg, border: `1px solid ${currentTheme.terminalBorder}`, ...style }}>
       {/* Terminal Header */}
-      <div className="bg-gray-800 px-4 py-3 flex items-center justify-between">
+      <div className="px-4 py-3 flex items-center justify-between"
+           style={{ backgroundColor: currentTheme.terminalHeader, borderBottom: `1px solid ${currentTheme.terminalBorder}` }}>
         <div className="flex items-center space-x-2">
-          <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-          <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-          <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+          <div className="w-3 h-3 rounded-full" style={{ backgroundColor: currentTheme.terminalDots.red }}></div>
+          <div className="w-3 h-3 rounded-full" style={{ backgroundColor: currentTheme.terminalDots.yellow }}></div>
+          <div className="w-3 h-3 rounded-full" style={{ backgroundColor: currentTheme.terminalDots.green }}></div>
         </div>
         <div style={{
           fontFamily: '"JetBrains Mono", monospace',
           fontSize: '12px',
-          color: 'rgb(156, 163, 175)'
+          color: currentTheme.textMuted
         }}>
           benjamin@portfolio:~
         </div>
       </div>
 
       {/* Tab Bar */}
-      <div className="bg-gray-800 border-b border-gray-700 flex">
+      <div className="flex" style={{ backgroundColor: currentTheme.terminalHeader, borderBottom: `1px solid ${currentTheme.terminalBorder}` }}>
         {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`px-4 py-2 text-sm border-r border-gray-700 transition-colors ${
-              activeTab === tab.id
-                ? 'bg-gray-900 text-white'
-                : 'bg-gray-800 text-gray-400 hover:text-white hover:bg-gray-750'
-            }`}
+            className="px-4 py-2 text-sm transition-colors"
             style={{
               fontFamily: '"JetBrains Mono", monospace',
-              fontSize: '12px'
+              fontSize: '12px',
+              backgroundColor: activeTab === tab.id ? currentTheme.terminalTabActive : currentTheme.terminalTab,
+              color: activeTab === tab.id ? currentTheme.textPrimary : currentTheme.textMuted,
+              borderRight: `1px solid ${currentTheme.terminalBorder}`,
+              borderBottom: activeTab === tab.id ? `2px solid ${currentTheme.textPrimary}` : 'none'
+            }}
+            onMouseEnter={(e) => {
+              if (activeTab !== tab.id) {
+                e.currentTarget.style.color = currentTheme.textSecondary
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (activeTab !== tab.id) {
+                e.currentTarget.style.color = currentTheme.textMuted
+              }
             }}
           >
             {tab.name}
@@ -207,7 +217,7 @@ export default function Terminal({ className }: TerminalProps) {
       </div>
 
       {/* Terminal Content */}
-      <div className="p-6 min-h-[500px]">
+      <div className="p-6 h-[500px] overflow-y-auto">
         {activeTab === 'intro' && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -218,49 +228,49 @@ export default function Terminal({ className }: TerminalProps) {
               fontFamily: '"JetBrains Mono", monospace',
               fontSize: '14px',
               lineHeight: '1.6',
-              color: 'rgb(248, 250, 252)'
+              color: currentTheme.textPrimary
             }}>
-              <div className="text-green-400 mb-4">
+              <div className="mb-4" style={{ color: currentTheme.command }}>
                 $ cat intro.md
               </div>
 
               <div className="space-y-4">
-                <div className="text-cyan-300 text-lg font-medium">
+                <div className="text-lg font-medium" style={{ color: currentTheme.variable }}>
                   # Hello! Welcome to my World 👋
                 </div>
 
-                <div className="text-gray-300">
+                <div style={{ color: currentTheme.textSecondary }}>
                   <div className="mb-3">
-                    <span className="text-yellow-400">const</span>{' '}
-                    <span className="text-blue-400">philosophy</span> = {'{'}
+                    <span style={{ color: currentTheme.keyword }}>const</span>{' '}
+                    <span style={{ color: currentTheme.variable }}>philosophy</span> = {'{'}
                   </div>
                   <div className="pl-4 space-y-2">
                     <div>
-                      <span className="text-green-400">build:</span>{' '}
-                      <span className="text-orange-300">"thoughtful solutions"</span>,
+                      <span style={{ color: currentTheme.command }}>build:</span>{' '}
+                      <span style={{ color: currentTheme.string }}>&quot;thoughtful solutions&quot;</span>,
                     </div>
                     <div>
-                      <span className="text-green-400">create:</span>{' '}
-                      <span className="text-orange-300">"with intention and care"</span>,
+                      <span style={{ color: currentTheme.command }}>create:</span>{' '}
+                      <span style={{ color: currentTheme.string }}>&quot;with intention and care&quot;</span>,
                     </div>
                     <div>
-                      <span className="text-green-400">think:</span>{' '}
-                      <span className="text-orange-300">"from angles and dimensions"</span>
+                      <span style={{ color: currentTheme.command }}>think:</span>{' '}
+                      <span style={{ color: currentTheme.string }}>&quot;from angles and dimensions&quot;</span>
                     </div>
                   </div>
                   <div className="mt-3">{'}'}</div>
                 </div>
 
-                <div className="text-gray-400 mt-6">
+                <div className="mt-6" style={{ color: currentTheme.textMuted }}>
                   <div className="mb-2">
-                    <span className="text-purple-400">//</span> Always learning, always building
+                    <span style={{ color: currentTheme.comment }}>{'//'}</span> Always learning, always building
                   </div>
                   <div>
-                    <span className="text-purple-400">//</span> Let's create something amazing together
+                    <span style={{ color: currentTheme.comment }}>{'//'}</span> Let&apos;s create something amazing together
                   </div>
                 </div>
 
-                <div className="mt-6 text-green-400">
+                <div className="mt-6" style={{ color: currentTheme.cursor }}>
                   <span className="animate-pulse">▊</span>
                 </div>
               </div>
@@ -277,7 +287,7 @@ export default function Terminal({ className }: TerminalProps) {
               fontFamily: '"JetBrains Mono", monospace',
               fontSize: '12px',
               lineHeight: '1.6',
-              color: 'rgb(248, 250, 252)'
+              color: currentTheme.textPrimary
             }}
           >
             <div className="text-green-400 mb-4">
@@ -287,7 +297,7 @@ export default function Terminal({ className }: TerminalProps) {
             <div className="space-y-4">
               <div className="text-gray-400">
                 <div className="text-green-300"># Interactive Python Shell</div>
-                <div className="text-green-300"># Try: skills["languages"] or type a key name</div>
+                <div className="text-green-300"># Try: skills[&quot;languages&quot;] or type a key name</div>
               </div>
 
               <div className="mb-4 relative">
@@ -326,7 +336,7 @@ export default function Terminal({ className }: TerminalProps) {
                           setSelectedOption(0)
                         }}
                       >
-                        <span className="text-cyan-400">"{option}"</span>
+                        <span className="text-cyan-400">&quot;{option}&quot;</span>
                         {option === 'all' && (
                           <span className="text-gray-500 ml-2"># show all skills</span>
                         )}
@@ -337,26 +347,44 @@ export default function Terminal({ className }: TerminalProps) {
               </div>
 
               {/* Typewriter Output */}
-              <div className="text-gray-300 whitespace-pre-wrap font-mono text-sm leading-relaxed">
+              <div className="whitespace-pre-wrap font-mono text-sm leading-relaxed" style={{ color: currentTheme.textSecondary }}>
                 {typedContent.split('\n').map((line, index) => {
                   // Determine line type and apply appropriate styling
                   let styledLine = line
 
                   if (line.includes('skills') && line.includes('=')) {
                     // Main skills declaration
-                    styledLine = line.replace('skills', '<span class="text-purple-400">skills</span>')
-                  } else if (line.includes('":') && !line.includes('skills')) {
-                    // Key-value pairs - find the key between quotes
-                    const keyMatch = line.match(/"([^"]+)":/)
-                    if (keyMatch) {
-                      styledLine = line.replace(`"${keyMatch[1]}"`, `<span class="text-cyan-400">"${keyMatch[1]}"</span>`)
-                    }
-                  } else if (line.includes('"') && !line.includes(':') && !line.includes('skills') && !line.includes('KeyError')) {
-                    // Skill items
-                    styledLine = `<span class="text-orange-300">${line}</span>`
+                    styledLine = line.replace(/^(\s*)skills/, `$1<span style="color: ${currentTheme.variable}; font-weight: 600;">skills</span>`)
+                  } else if (line.includes('":') && line.includes('[') && !line.includes('skills')) {
+                    // Compact format: "key": [values] on one line
+                    // First highlight the key with a distinct color
+                    styledLine = line.replace(/"([^"]+)":\s*\[/, `<span style="color: ${currentTheme.variable}; font-weight: 600;">"$1"</span><span style="color: ${currentTheme.textSecondary};">:</span> <span style="color: ${currentTheme.textSecondary};">[</span>`)
+                    // Then highlight all the skill values with alternating colors for better readability
+                    styledLine = styledLine.replace(/\[([^\]]+)\]/, (match: string, content: string) => {
+                      const skills = content.split(',').map((skill: string) => skill.trim())
+                      const highlightedSkills = skills.map((skill: string, index: number) => {
+                        // Alternate between string color and a slightly different shade for better readability
+                        const color = index % 2 === 0 ? currentTheme.string : currentTheme.keyword
+                        return skill.replace(/"([^"]+)"/, `<span style="color: ${color}; font-weight: 500;">"$1"</span>`)
+                      })
+                      return `${highlightedSkills.join('<span style="color: ' + currentTheme.textSecondary + ';">, </span>')}<span style="color: ${currentTheme.textSecondary};">]</span>`
+                    })
+                  } else if (line.includes('[') && line.includes(']') && line.includes('"') && !line.includes('KeyError') && !line.includes(':')) {
+                    // Single line skill arrays (for individual category queries)
+                    // Highlight the skills["key"] part first
+                    styledLine = line.replace(/skills\["([^"]+)"\]/, `<span style="color: ${currentTheme.variable}; font-weight: 600;">skills</span><span style="color: ${currentTheme.textSecondary};">[</span><span style="color: ${currentTheme.command}; font-weight: 500;">"$1"</span><span style="color: ${currentTheme.textSecondary};">]</span>`)
+                    // Then highlight the array content with alternating colors
+                    styledLine = styledLine.replace(/=\s*\[([^\]]+)\]/, (match: string, content: string) => {
+                      const skills = content.split(',').map((skill: string) => skill.trim())
+                      const highlightedSkills = skills.map((skill: string, index: number) => {
+                        const color = index % 2 === 0 ? currentTheme.string : currentTheme.keyword
+                        return skill.replace(/"([^"]+)"/, `<span style="color: ${color}; font-weight: 500;">"$1"</span>`)
+                      })
+                      return ` <span style="color: ${currentTheme.textSecondary};">=</span> <span style="color: ${currentTheme.textSecondary};">[</span>${highlightedSkills.join('<span style="color: ' + currentTheme.textSecondary + ';">, </span>')}<span style="color: ${currentTheme.textSecondary};">]</span>`
+                    })
                   } else if (line.includes('KeyError') || line.includes('Available keys')) {
                     // Error messages
-                    styledLine = `<span class="text-red-400">${line}</span>`
+                    styledLine = `<span style="color: ${currentTheme.error};">${line}</span>`
                   }
 
                   return (
@@ -366,7 +394,7 @@ export default function Terminal({ className }: TerminalProps) {
                   )
                 })}
                 {isTyping && (
-                  <span className="text-green-400 animate-pulse">▊</span>
+                  <span style={{ color: currentTheme.cursor }} className="animate-pulse">▊</span>
                 )}
               </div>
             </div>
@@ -382,7 +410,7 @@ export default function Terminal({ className }: TerminalProps) {
               fontFamily: '"JetBrains Mono", monospace',
               fontSize: '12px',
               lineHeight: '1.6',
-              color: 'rgb(248, 250, 252)'
+              color: currentTheme.textPrimary
             }}
           >
             <div className="text-green-400 mb-4">

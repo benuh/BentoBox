@@ -7,12 +7,18 @@ import GitHubIcon from '../../components/icons/GitHubIcon'
 import LinkedInIcon from '../../components/icons/LinkedInIcon'
 import InstagramIcon from '../../components/icons/InstagramIcon'
 import XIcon from '../../components/icons/XIcon'
+import ThemeToggle from '../../components/ThemeToggle'
+import { useTheme } from '../../contexts/ThemeContext'
+import { themes } from '../../utils/theme'
 
 export default function DeveloperPage() {
+  const { theme } = useTheme()
+  const currentTheme = themes[theme]
+
   return (
     <PageTransition>
       <div className="min-h-screen" style={{
-        backgroundColor: 'rgb(15, 23, 42)',
+        backgroundColor: currentTheme.background,
         padding: 'clamp(1rem, 3vw, 2rem)'
       }}>
         {/* Navigation - Top Left */}
@@ -22,18 +28,33 @@ export default function DeveloperPage() {
         }}>
           <Link
             href="/"
-            className="inline-flex items-center rounded-lg transition-all duration-200 hover:bg-slate-700 hover:bg-opacity-10"
+            className="inline-flex items-center rounded-lg transition-all duration-200"
             style={{
               fontFamily: '"JetBrains Mono", monospace',
-              color: 'rgb(248, 250, 252)',
+              color: currentTheme.navText,
               textDecoration: 'none',
               fontSize: 'clamp(0.7rem, 1.2vw, 0.9rem)',
               fontWeight: 500,
-              padding: 'clamp(0.5rem, 1vw, 0.75rem) clamp(0.75rem, 1.5vw, 1rem)'
+              padding: 'clamp(0.5rem, 1vw, 0.75rem) clamp(0.75rem, 1.5vw, 1rem)',
+              backgroundColor: 'transparent'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = currentTheme.navHover
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = 'transparent'
             }}
           >
             &lt;- cd ~/
           </Link>
+        </div>
+
+        {/* Theme Toggle - Top Right */}
+        <div className="absolute z-10" style={{
+          top: 'clamp(1rem, 2vw, 1.5rem)',
+          right: 'clamp(1rem, 2vw, 1.5rem)'
+        }}>
+          <ThemeToggle />
         </div>
 
         {/* Desktop Layout */}
@@ -71,7 +92,7 @@ export default function DeveloperPage() {
                 <h1 style={{
                   fontFamily: '"Inter", sans-serif',
                   fontWeight: 700,
-                  color: 'rgb(248, 250, 252)',
+                  color: currentTheme.textPrimary,
                   letterSpacing: '-0.025em',
                   fontSize: 'clamp(2rem, 5vw, 4rem)',
                   margin: 0,
@@ -83,7 +104,7 @@ export default function DeveloperPage() {
                 <h2 style={{
                   fontFamily: '"JetBrains Mono", monospace',
                   fontWeight: 500,
-                  color: 'rgb(148, 163, 184)',
+                  color: currentTheme.textSecondary,
                   letterSpacing: '0.05em',
                   fontSize: 'clamp(1rem, 2vw, 1.5rem)',
                   margin: 0
@@ -97,22 +118,38 @@ export default function DeveloperPage() {
                 <GitHubIcon
                   href="https://github.com/benuh"
                   size="3rem"
-                  style={{ boxShadow: '0 4px 12px rgba(0,0,0,0.2)' }}
+                  backgroundColor={currentTheme.iconBg}
+                  color={currentTheme.iconColor}
+                  style={{
+                    boxShadow: theme === 'dark' ? '0 4px 12px rgba(0,0,0,0.2)' : '0 4px 12px rgba(0,0,0,0.1)'
+                  }}
                 />
                 <LinkedInIcon
                   href="https://www.linkedin.com/in/benjamin-hu-556104176/"
                   size="3rem"
-                  style={{ boxShadow: '0 4px 12px rgba(0,0,0,0.2)' }}
+                  backgroundColor={currentTheme.iconBg}
+                  color={currentTheme.iconColor}
+                  style={{
+                    boxShadow: theme === 'dark' ? '0 4px 12px rgba(0,0,0,0.2)' : '0 4px 12px rgba(0,0,0,0.1)'
+                  }}
                 />
                 <InstagramIcon
                   href="https://www.instagram.com/benjamin.c.hu/#"
                   size="3rem"
-                  style={{ boxShadow: '0 4px 12px rgba(0,0,0,0.2)' }}
+                  backgroundColor={currentTheme.iconBg}
+                  color={currentTheme.iconColor}
+                  style={{
+                    boxShadow: theme === 'dark' ? '0 4px 12px rgba(0,0,0,0.2)' : '0 4px 12px rgba(0,0,0,0.1)'
+                  }}
                 />
                 <XIcon
                   href="https://x.com/benerichu"
                   size="3rem"
-                  style={{ boxShadow: '0 4px 12px rgba(0,0,0,0.2)' }}
+                  backgroundColor={currentTheme.iconBg}
+                  color={currentTheme.iconColor}
+                  style={{
+                    boxShadow: theme === 'dark' ? '0 4px 12px rgba(0,0,0,0.2)' : '0 4px 12px rgba(0,0,0,0.1)'
+                  }}
                 />
               </div>
             </div>
@@ -130,7 +167,7 @@ export default function DeveloperPage() {
         {/* Mobile Layout */}
         <div className="md:hidden flex flex-col min-h-screen" style={{ padding: 'clamp(1rem, 4vw, 2rem)' }}>
           {/* Profile Section - Top */}
-          <div className="flex flex-col items-center text-center mb-8">
+          <div className="flex flex-col items-center text-center mb-8" style={{ paddingTop: '3rem' }}>
             {/* Profile Picture */}
             <div className="mb-6">
               <img
@@ -151,7 +188,7 @@ export default function DeveloperPage() {
               <h1 style={{
                 fontFamily: '"Inter", sans-serif',
                 fontWeight: 700,
-                color: 'rgb(248, 250, 252)',
+                color: currentTheme.textPrimary,
                 letterSpacing: '-0.025em',
                 fontSize: 'clamp(1.8rem, 8vw, 2.5rem)',
                 margin: 0,
@@ -163,7 +200,7 @@ export default function DeveloperPage() {
               <h2 style={{
                 fontFamily: '"JetBrains Mono", monospace',
                 fontWeight: 500,
-                color: 'rgb(148, 163, 184)',
+                color: currentTheme.textSecondary,
                 letterSpacing: '0.05em',
                 fontSize: 'clamp(0.9rem, 4vw, 1.2rem)',
                 margin: 0
@@ -177,22 +214,38 @@ export default function DeveloperPage() {
               <GitHubIcon
                 href="https://github.com/benuh"
                 size="2.5rem"
-                style={{ boxShadow: '0 4px 12px rgba(0,0,0,0.2)' }}
+                backgroundColor={currentTheme.iconBg}
+                color={currentTheme.iconColor}
+                style={{
+                  boxShadow: theme === 'dark' ? '0 4px 12px rgba(0,0,0,0.2)' : '0 4px 12px rgba(0,0,0,0.1)'
+                }}
               />
               <LinkedInIcon
                 href="https://www.linkedin.com/in/benjamin-hu-556104176/"
                 size="2.5rem"
-                style={{ boxShadow: '0 4px 12px rgba(0,0,0,0.2)' }}
+                backgroundColor={currentTheme.iconBg}
+                color={currentTheme.iconColor}
+                style={{
+                  boxShadow: theme === 'dark' ? '0 4px 12px rgba(0,0,0,0.2)' : '0 4px 12px rgba(0,0,0,0.1)'
+                }}
               />
               <InstagramIcon
                 href="https://www.instagram.com/benjamin.c.hu/#"
                 size="2.5rem"
-                style={{ boxShadow: '0 4px 12px rgba(0,0,0,0.2)' }}
+                backgroundColor={currentTheme.iconBg}
+                color={currentTheme.iconColor}
+                style={{
+                  boxShadow: theme === 'dark' ? '0 4px 12px rgba(0,0,0,0.2)' : '0 4px 12px rgba(0,0,0,0.1)'
+                }}
               />
               <XIcon
                 href="https://x.com/benerichu"
                 size="2.5rem"
-                style={{ boxShadow: '0 4px 12px rgba(0,0,0,0.2)' }}
+                backgroundColor={currentTheme.iconBg}
+                color={currentTheme.iconColor}
+                style={{
+                  boxShadow: theme === 'dark' ? '0 4px 12px rgba(0,0,0,0.2)' : '0 4px 12px rgba(0,0,0,0.1)'
+                }}
               />
             </div>
           </div>
