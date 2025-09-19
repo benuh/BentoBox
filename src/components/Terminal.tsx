@@ -20,6 +20,7 @@ export default function Terminal({ className, style }: TerminalProps) {
   const [selectedOption, setSelectedOption] = useState(0)
   const [typedContent, setTypedContent] = useState('')
   const [isTyping, setIsTyping] = useState(false)
+  const [expandedProject, setExpandedProject] = useState<string | null>(null)
 
   const tabs = [
     { id: 'intro', name: 'intro.md', active: true },
@@ -52,7 +53,7 @@ export default function Terminal({ className, style }: TerminalProps) {
       "TensorFlow", "PyTorch", "OpenCV"
     ],
     specialized: [
-      "Cryptography", "Operational Research",
+      "Full Stack", "Cryptography", "Operational Research",
       "Physical Modeling", "OpenGL",
       "Computer Vision", "Computer Graphics"
     ]
@@ -413,11 +414,354 @@ export default function Terminal({ className, style }: TerminalProps) {
               color: currentTheme.textPrimary
             }}
           >
-            <div className="text-green-400 mb-4">
+            <div className="mb-4" style={{ color: currentTheme.command }}>
               $ open projects.html
             </div>
-            <div className="text-gray-300">
-              Loading project portfolio...
+
+            <div className="space-y-6">
+              {/* Project 1: MiniGPT */}
+              <div className="border-l-2 pl-4" style={{ borderColor: currentTheme.cursor }}>
+                <div className="mb-3">
+                  <div className="flex items-center gap-3 mb-2">
+                    <h3 className="text-lg font-semibold" style={{ color: currentTheme.variable }}>
+                      MiniGPT
+                    </h3>
+                    <span className="px-2 py-1 text-xs rounded flex items-center gap-1" style={{
+                      backgroundColor: currentTheme.cursor,
+                      color: currentTheme.terminalBg,
+                      fontWeight: '500'
+                    }}>
+                      <span className="w-2 h-2 rounded-full animate-pulse" style={{
+                        backgroundColor: currentTheme.terminalBg
+                      }}></span>
+                      Active Development
+                    </span>
+                  </div>
+                  <div className="mb-2">
+                    <span style={{ color: currentTheme.keyword }}>Repository:</span>{' '}
+                    <a
+                      href="https://github.com/benuh/MiniGPT"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:underline transition-colors"
+                      style={{ color: currentTheme.string }}
+                    >
+                      github.com/benuh/MiniGPT
+                    </a>
+                  </div>
+                  <div className="mb-3" style={{ color: currentTheme.textSecondary, lineHeight: '1.5' }}>
+                    Educational Transformer implementation designed for hands-on learning and experimentation.
+                    Provides accessible, modular architecture for understanding attention mechanisms, model scaling, and training dynamics.
+                    Features interactive training pipelines with W&B monitoring, enabling learners to experiment with hyperparameters
+                    and observe real-time model behavior. Full-stack deployment demonstrates end-to-end ML system development.
+                  </div>
+                  <div className="mb-3" style={{ color: currentTheme.textMuted, fontSize: '11px', fontStyle: 'italic' }}>
+                    📚 Detailed architecture documentation and implementation guides available in{' '}
+                    <span style={{ color: currentTheme.string, fontFamily: '"JetBrains Mono", monospace' }}>/core</span> directory
+                  </div>
+
+                  <button
+                    onClick={() => setExpandedProject(expandedProject === 'minigpt' ? null : 'minigpt')}
+                    className="mb-3 text-xs hover:underline transition-colors flex items-center gap-1"
+                    style={{ color: currentTheme.command }}
+                  >
+                    <span>{expandedProject === 'minigpt' ? '▼' : '▶'}</span>
+                    {expandedProject === 'minigpt' ? 'Hide Details' : 'Show Architecture Details'}
+                  </button>
+
+                  {expandedProject === 'minigpt' && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="mb-4 p-3 rounded"
+                      style={{
+                        backgroundColor: currentTheme.terminalHeader,
+                        border: `1px solid ${currentTheme.terminalBorder}`,
+                        fontSize: '11px',
+                        lineHeight: '1.4'
+                      }}
+                    >
+                      <div className="space-y-3">
+                        <div>
+                          <h4 className="font-semibold mb-2" style={{ color: currentTheme.variable }}>
+                            🏗️ Core Architecture
+                          </h4>
+                          <ul className="space-y-1 pl-4" style={{ color: currentTheme.textSecondary }}>
+                            <li>• <span style={{ color: currentTheme.keyword }}>Multi-head attention</span> with causal masking</li>
+                            <li>• <span style={{ color: currentTheme.keyword }}>Learned position embeddings</span> for sequence understanding</li>
+                            <li>• <span style={{ color: currentTheme.keyword }}>GELU activation</span> functions with layer normalization</li>
+                            <li>• <span style={{ color: currentTheme.keyword }}>Modular transformer blocks</span> (~87K parameters, 4 layers)</li>
+                          </ul>
+                        </div>
+
+                        <div>
+                          <h4 className="font-semibold mb-2" style={{ color: currentTheme.variable }}>
+                            🔄 Training Pipeline
+                          </h4>
+                          <ul className="space-y-1 pl-4" style={{ color: currentTheme.textSecondary }}>
+                            <li>• <span style={{ color: currentTheme.string }}>AdamW optimizer</span> with linear warmup scheduling</li>
+                            <li>• <span style={{ color: currentTheme.string }}>Automatic checkpointing</span> and validation tracking</li>
+                            <li>• <span style={{ color: currentTheme.string }}>Cross-entropy loss</span> for next-token prediction</li>
+                            <li>• <span style={{ color: currentTheme.string }}>Real-time monitoring</span> with Weights & Biases integration</li>
+                          </ul>
+                        </div>
+
+                        <div>
+                          <h4 className="font-semibold mb-2" style={{ color: currentTheme.variable }}>
+                            🚀 Deployment Stack
+                          </h4>
+                          <ul className="space-y-1 pl-4" style={{ color: currentTheme.textSecondary }}>
+                            <li>• <span style={{ color: currentTheme.cursor }}>React frontend</span> with interactive parameter controls</li>
+                            <li>• <span style={{ color: currentTheme.cursor }}>REST API server</span> for model inference</li>
+                            <li>• <span style={{ color: currentTheme.cursor }}>Docker containerization</span> with Kubernetes orchestration</li>
+                            <li>• <span style={{ color: currentTheme.cursor }}>YAML-based configuration</span> management</li>
+                          </ul>
+                        </div>
+
+                        <div>
+                          <h4 className="font-semibold mb-2" style={{ color: currentTheme.variable }}>
+                            🎯 Key Features
+                          </h4>
+                          <ul className="space-y-1 pl-4" style={{ color: currentTheme.textSecondary }}>
+                            <li>• <span style={{ color: currentTheme.comment }}>Temperature & top-k sampling</span> for controlled generation</li>
+                            <li>• <span style={{ color: currentTheme.comment }}>Configurable context window</span> management</li>
+                            <li>• <span style={{ color: currentTheme.comment }}>Device-agnostic deployment</span> (GPU/MPS/CPU)</li>
+                            <li>• <span style={{ color: currentTheme.comment }}>Interactive chat interface</span> with real-time inference</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      PyTorch
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      Transformers
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      React
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      REST API
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      Docker
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      W&B
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      Kubernetes
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      YAML
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Project 2: Unicorn-Explosion */}
+              <div className="border-l-2 pl-4" style={{ borderColor: currentTheme.string }}>
+                <div className="mb-3">
+                  <div className="flex items-center gap-3 mb-2">
+                    <h3 className="text-lg font-semibold" style={{ color: currentTheme.variable }}>
+                      Unicorn-Explosion
+                    </h3>
+                    <span className="px-2 py-1 text-xs rounded flex items-center gap-1" style={{
+                      backgroundColor: currentTheme.keyword,
+                      color: currentTheme.terminalBg,
+                      fontWeight: '500'
+                    }}>
+                      🎮 Complete
+                    </span>
+                  </div>
+                  <div className="mb-2">
+                    <span style={{ color: currentTheme.keyword }}>Repository:</span>{' '}
+                    <a
+                      href="https://github.com/benuh/Unicorn-Explosion"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:underline transition-colors"
+                      style={{ color: currentTheme.string }}
+                    >
+                      github.com/benuh/Unicorn-Explosion
+                    </a>
+                  </div>
+                  <div className="mb-3" style={{ color: currentTheme.textSecondary, lineHeight: '1.5' }}>
+                    Computer Engineering project featuring a complete arcade game system designed from scratch in Verilog HDL.
+                    Demonstrates microcontroller programming principles with custom hardware modules for audio synthesis,
+                    VGA graphics rendering, and real-time user interaction. Built on Nexys 4 DDR FPGA to showcase
+                    low-level digital system design and embedded hardware architecture.
+                  </div>
+
+                  <button
+                    onClick={() => setExpandedProject(expandedProject === 'unicorn' ? null : 'unicorn')}
+                    className="mb-3 text-xs hover:underline transition-colors flex items-center gap-1"
+                    style={{ color: currentTheme.command }}
+                  >
+                    <span>{expandedProject === 'unicorn' ? '▼' : '▶'}</span>
+                    {expandedProject === 'unicorn' ? 'Hide Technical Details' : 'Show FPGA Architecture'}
+                  </button>
+
+                  {expandedProject === 'unicorn' && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="mb-4 p-3 rounded"
+                      style={{
+                        backgroundColor: currentTheme.terminalHeader,
+                        border: `1px solid ${currentTheme.terminalBorder}`,
+                        fontSize: '11px',
+                        lineHeight: '1.4'
+                      }}
+                    >
+                      <div className="space-y-3">
+                        <div>
+                          <h4 className="font-semibold mb-2" style={{ color: currentTheme.variable }}>
+                            🔧 Computer Engineering Design
+                          </h4>
+                          <ul className="space-y-1 pl-4" style={{ color: currentTheme.textSecondary }}>
+                            <li>• <span style={{ color: currentTheme.keyword }}>Microcontroller principles</span> applied to FPGA architecture</li>
+                            <li>• <span style={{ color: currentTheme.keyword }}>Hardware-software co-design</span> methodology</li>
+                            <li>• <span style={{ color: currentTheme.keyword }}>Digital system integration</span> across multiple subsystems</li>
+                            <li>• <span style={{ color: currentTheme.keyword }}>Real-time embedded processing</span> constraints and optimization</li>
+                          </ul>
+                        </div>
+
+                        <div>
+                          <h4 className="font-semibold mb-2" style={{ color: currentTheme.variable }}>
+                            🏗️ Verilog Engine Architecture
+                          </h4>
+                          <ul className="space-y-1 pl-4" style={{ color: currentTheme.textSecondary }}>
+                            <li>• <span style={{ color: currentTheme.string }}>Audio Engine</span> - Custom sound synthesis and playback</li>
+                            <li>• <span style={{ color: currentTheme.string }}>Display Engine</span> - Real-time graphics rendering and scanning</li>
+                            <li>• <span style={{ color: currentTheme.string }}>Physics Engine</span> - Collision detection and game mechanics</li>
+                            <li>• <span style={{ color: currentTheme.string }}>Map Generator</span> - Dynamic level creation and management</li>
+                            <li>• <span style={{ color: currentTheme.string }}>Score Engine</span> - Game state tracking and scoring system</li>
+                          </ul>
+                        </div>
+
+                        <div>
+                          <h4 className="font-semibold mb-2" style={{ color: currentTheme.variable }}>
+                            🎮 Game Features
+                          </h4>
+                          <ul className="space-y-1 pl-4" style={{ color: currentTheme.textSecondary }}>
+                            <li>• <span style={{ color: currentTheme.cursor }}>Interactive gameplay</span> with responsive controls</li>
+                            <li>• <span style={{ color: currentTheme.cursor }}>Digital audio output</span> with custom sound effects</li>
+                            <li>• <span style={{ color: currentTheme.cursor }}>Real-time graphics</span> on VGA display interface</li>
+                            <li>• <span style={{ color: currentTheme.cursor }}>Addictive arcade mechanics</span> with scoring system</li>
+                          </ul>
+                        </div>
+
+                        <div>
+                          <h4 className="font-semibold mb-2" style={{ color: currentTheme.variable }}>
+                            💻 Microcontroller & Digital Systems
+                          </h4>
+                          <ul className="space-y-1 pl-4" style={{ color: currentTheme.textSecondary }}>
+                            <li>• <span style={{ color: currentTheme.comment }}>Low-level hardware programming</span> in Verilog HDL</li>
+                            <li>• <span style={{ color: currentTheme.comment }}>Finite state machine design</span> for embedded control logic</li>
+                            <li>• <span style={{ color: currentTheme.comment }}>Clock domain crossing</span> and timing constraint management</li>
+                            <li>• <span style={{ color: currentTheme.comment }}>Memory-mapped I/O</span> and peripheral interface design</li>
+                            <li>• <span style={{ color: currentTheme.comment }}>Interrupt handling</span> and real-time response systems</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      Computer Engineering
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      Microcontroller
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      Verilog HDL
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      FPGA
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      Digital Systems
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      Embedded Hardware
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-6" style={{ color: currentTheme.textMuted }}>
+                <div className="mb-2">
+                  <span style={{ color: currentTheme.comment }}>{'//'}</span> More projects coming soon...
+                </div>
+              </div>
+
+              <div className="mt-6" style={{ color: currentTheme.cursor }}>
+                <span className="animate-pulse">▊</span>
+              </div>
             </div>
           </motion.div>
         )}
