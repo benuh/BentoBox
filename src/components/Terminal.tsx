@@ -420,7 +420,13 @@ export default function Terminal({ className, style }: TerminalProps) {
 
             <div className="space-y-6">
               {/* Project 1: MiniGPT */}
-              <div className="border-l-2 pl-4" style={{ borderColor: currentTheme.cursor }}>
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="border-l-2 pl-4"
+                style={{ borderColor: currentTheme.cursor }}
+              >
                 <div className="mb-3">
                   <div className="flex items-center gap-3 mb-2">
                     <h3 className="text-lg font-semibold" style={{ color: currentTheme.variable }}>
@@ -456,8 +462,8 @@ export default function Terminal({ className, style }: TerminalProps) {
                     and observe real-time model behavior. Full-stack deployment demonstrates end-to-end ML system development.
                   </div>
                   <div className="mb-3" style={{ color: currentTheme.textMuted, fontSize: '11px', fontStyle: 'italic' }}>
-                    📚 Detailed architecture documentation and implementation guides available in{' '}
-                    <span style={{ color: currentTheme.string, fontFamily: '"JetBrains Mono", monospace' }}>/core</span> directory
+                    📚 Detailed architecture references and implementation guides available on the{' '}
+                    <span style={{ color: currentTheme.string, fontFamily: '"JetBrains Mono", monospace' }}>CoreInfrastructure</span> page
                   </div>
 
                   <button
@@ -593,10 +599,180 @@ export default function Terminal({ className, style }: TerminalProps) {
                     </span>
                   </div>
                 </div>
-              </div>
+              </motion.div>
 
-              {/* Project 2: Unicorn-Explosion */}
-              <div className="border-l-2 pl-4" style={{ borderColor: currentTheme.string }}>
+              {/* Project 2: LitLMC */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="border-l-2 pl-4"
+                style={{ borderColor: currentTheme.comment }}
+              >
+                <div className="mb-3">
+                  <div className="flex items-center gap-3 mb-2">
+                    <h3 className="text-lg font-semibold" style={{ color: currentTheme.variable }}>
+                      LitLMC
+                    </h3>
+                    <span className="px-2 py-1 text-xs rounded flex items-center gap-1" style={{
+                      backgroundColor: currentTheme.textSecondary,
+                      color: currentTheme.terminalBg,
+                      fontWeight: '500'
+                    }}>
+                      🔧 Maintaining
+                    </span>
+                  </div>
+                  <div className="mb-2">
+                    <span style={{ color: currentTheme.keyword }}>Repository:</span>{' '}
+                    <a
+                      href="https://github.com/benuh/LitLMC"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:underline transition-colors"
+                      style={{ color: currentTheme.string }}
+                    >
+                      github.com/benuh/LitLMC
+                    </a>
+                  </div>
+                  <div className="mb-3" style={{ color: currentTheme.textSecondary, lineHeight: '1.5' }}>
+                    Experimental neural network built from scratch in C++ to address LLM accuracy and efficiency challenges.
+                    While most successful LLMs use Python with specialized libraries, this project explores the performance benefits
+                    of lower-level languages with direct GPU interaction. Demonstrates the strategic approach of understanding
+                    core algorithms before scaling - validating the concept for future Python-to-C++ translation workflows.
+                  </div>
+
+                  <button
+                    onClick={() => setExpandedProject(expandedProject === 'litlmc' ? null : 'litlmc')}
+                    className="mb-3 text-xs hover:underline transition-colors flex items-center gap-1"
+                    style={{ color: currentTheme.command }}
+                  >
+                    <span>{expandedProject === 'litlmc' ? '▼' : '▶'}</span>
+                    {expandedProject === 'litlmc' ? 'Hide Implementation Details' : 'Show C++ Architecture'}
+                  </button>
+
+                  {expandedProject === 'litlmc' && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="mb-4 p-3 rounded"
+                      style={{
+                        backgroundColor: currentTheme.terminalHeader,
+                        border: `1px solid ${currentTheme.terminalBorder}`,
+                        fontSize: '11px',
+                        lineHeight: '1.4'
+                      }}
+                    >
+                      <div className="space-y-3">
+                        <div>
+                          <h4 className="font-semibold mb-2" style={{ color: currentTheme.variable }}>
+                            🔧 Computer Engineering Design
+                          </h4>
+                          <ul className="space-y-1 pl-4" style={{ color: currentTheme.textSecondary }}>
+                            <li>• <span style={{ color: currentTheme.keyword }}>Microcontroller principles</span> applied to FPGA architecture</li>
+                            <li>• <span style={{ color: currentTheme.keyword }}>Hardware-software co-design</span> methodology</li>
+                            <li>• <span style={{ color: currentTheme.keyword }}>Digital system integration</span> across multiple subsystems</li>
+                            <li>• <span style={{ color: currentTheme.keyword }}>Real-time embedded processing</span> constraints and optimization</li>
+                          </ul>
+                        </div>
+
+                        <div>
+                          <h4 className="font-semibold mb-2" style={{ color: currentTheme.variable }}>
+                            🏗️ Verilog Engine Architecture
+                          </h4>
+                          <ul className="space-y-1 pl-4" style={{ color: currentTheme.textSecondary }}>
+                            <li>• <span style={{ color: currentTheme.string }}>Audio Engine</span> - Custom sound synthesis and playback</li>
+                            <li>• <span style={{ color: currentTheme.string }}>Display Engine</span> - Real-time graphics rendering and scanning</li>
+                            <li>• <span style={{ color: currentTheme.string }}>Physics Engine</span> - Collision detection and game mechanics</li>
+                            <li>• <span style={{ color: currentTheme.string }}>Map Generator</span> - Dynamic level creation and management</li>
+                            <li>• <span style={{ color: currentTheme.string }}>Score Engine</span> - Game state tracking and scoring system</li>
+                          </ul>
+                        </div>
+
+                        <div>
+                          <h4 className="font-semibold mb-2" style={{ color: currentTheme.variable }}>
+                            🎮 Game Features
+                          </h4>
+                          <ul className="space-y-1 pl-4" style={{ color: currentTheme.textSecondary }}>
+                            <li>• <span style={{ color: currentTheme.cursor }}>Interactive gameplay</span> with responsive controls</li>
+                            <li>• <span style={{ color: currentTheme.cursor }}>Digital audio output</span> with custom sound effects</li>
+                            <li>• <span style={{ color: currentTheme.cursor }}>Real-time graphics</span> on VGA display interface</li>
+                            <li>• <span style={{ color: currentTheme.cursor }}>Addictive arcade mechanics</span> with scoring system</li>
+                          </ul>
+                        </div>
+
+                        <div>
+                          <h4 className="font-semibold mb-2" style={{ color: currentTheme.variable }}>
+                            💻 Microcontroller & Digital Systems
+                          </h4>
+                          <ul className="space-y-1 pl-4" style={{ color: currentTheme.textSecondary }}>
+                            <li>• <span style={{ color: currentTheme.comment }}>Low-level hardware programming</span> in Verilog HDL</li>
+                            <li>• <span style={{ color: currentTheme.comment }}>Finite state machine design</span> for embedded control logic</li>
+                            <li>• <span style={{ color: currentTheme.comment }}>Clock domain crossing</span> and timing constraint management</li>
+                            <li>• <span style={{ color: currentTheme.comment }}>Memory-mapped I/O</span> and peripheral interface design</li>
+                            <li>• <span style={{ color: currentTheme.comment }}>Interrupt handling</span> and real-time response systems</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      Computer Engineering
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      Microcontroller
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      Verilog HDL
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      FPGA
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      Digital Systems
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      Embedded Hardware
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Project 3: Unicorn-Explosion */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="border-l-2 pl-4"
+                style={{ borderColor: currentTheme.string }}
+              >
                 <div className="mb-3">
                   <div className="flex items-center gap-3 mb-2">
                     <h3 className="text-lg font-semibold" style={{ color: currentTheme.variable }}>
@@ -751,17 +927,340 @@ export default function Terminal({ className, style }: TerminalProps) {
                     </span>
                   </div>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="mt-6" style={{ color: currentTheme.textMuted }}>
+              {/* Project 4: threeJSPortfolio */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.7 }}
+                className="border-l-2 pl-4"
+                style={{ borderColor: currentTheme.variable }}
+              >
+                <div className="mb-3">
+                  <div className="flex items-center gap-3 mb-2">
+                    <h3 className="text-lg font-semibold" style={{ color: currentTheme.variable }}>
+                      threeJSPortfolio
+                    </h3>
+                    <span className="px-2 py-1 text-xs rounded flex items-center gap-1" style={{
+                      backgroundColor: currentTheme.keyword,
+                      color: currentTheme.terminalBg,
+                      fontWeight: '500'
+                    }}>
+                      🎮 Complete
+                    </span>
+                  </div>
+                  <div className="mb-2">
+                    <span style={{ color: currentTheme.keyword }}>Repository:</span>{' '}
+                    <a
+                      href="https://github.com/benuh/threeJSPortfolio"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:underline transition-colors"
+                      style={{ color: currentTheme.string }}
+                    >
+                      github.com/benuh/threeJSPortfolio
+                    </a>
+                  </div>
+                  <div className="mb-3" style={{ color: currentTheme.textSecondary, lineHeight: '1.5' }}>
+                    3D interactive portfolio exploring CAD modeling principles and Three.js graphics programming.
+                    Educational project focused on learning 3D web graphics, interactive design patterns,
+                    and immersive user experiences. Demonstrates modern web development with JavaScript,
+                    3D scene management, and interactive visualization techniques.
+                  </div>
+
+                  <button
+                    onClick={() => setExpandedProject(expandedProject === 'threejs' ? null : 'threejs')}
+                    className="mb-3 text-xs hover:underline transition-colors flex items-center gap-1"
+                    style={{ color: currentTheme.command }}
+                  >
+                    <span>{expandedProject === 'threejs' ? '▼' : '▶'}</span>
+                    {expandedProject === 'threejs' ? 'Hide Learning Details' : 'Show 3D Graphics Stack'}
+                  </button>
+
+                  {expandedProject === 'threejs' && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="mb-4 p-3 rounded"
+                      style={{
+                        backgroundColor: currentTheme.terminalHeader,
+                        border: `1px solid ${currentTheme.terminalBorder}`,
+                        fontSize: '11px',
+                        lineHeight: '1.4'
+                      }}
+                    >
+                      <div className="space-y-3">
+                        <div>
+                          <h4 className="font-semibold mb-2" style={{ color: currentTheme.variable }}>
+                            🎨 3D Graphics & CAD Modeling
+                          </h4>
+                          <ul className="space-y-1 pl-4" style={{ color: currentTheme.textSecondary }}>
+                            <li>• <span style={{ color: currentTheme.keyword }}>Three.js 3D rendering</span> with WebGL backend</li>
+                            <li>• <span style={{ color: currentTheme.keyword }}>CAD modeling principles</span> applied to web graphics</li>
+                            <li>• <span style={{ color: currentTheme.keyword }}>Scene composition</span> and 3D object management</li>
+                            <li>• <span style={{ color: currentTheme.keyword }}>Interactive visualization</span> and user experience design</li>
+                          </ul>
+                        </div>
+
+                        <div>
+                          <h4 className="font-semibold mb-2" style={{ color: currentTheme.variable }}>
+                            💻 Web Development Stack
+                          </h4>
+                          <ul className="space-y-1 pl-4" style={{ color: currentTheme.textSecondary }}>
+                            <li>• <span style={{ color: currentTheme.string }}>Modern JavaScript ES6+</span> for interactive functionality</li>
+                            <li>• <span style={{ color: currentTheme.string }}>HTML5 Canvas</span> and WebGL integration</li>
+                            <li>• <span style={{ color: currentTheme.string }}>CSS animations</span> and responsive design</li>
+                            <li>• <span style={{ color: currentTheme.string }}>Build tooling</span> with modern web development practices</li>
+                          </ul>
+                        </div>
+
+                        <div>
+                          <h4 className="font-semibold mb-2" style={{ color: currentTheme.variable }}>
+                            🎯 Learning Objectives
+                          </h4>
+                          <ul className="space-y-1 pl-4" style={{ color: currentTheme.textSecondary }}>
+                            <li>• <span style={{ color: currentTheme.cursor }}>3D graphics programming</span> fundamentals</li>
+                            <li>• <span style={{ color: currentTheme.cursor }}>Interactive design patterns</span> for web applications</li>
+                            <li>• <span style={{ color: currentTheme.cursor }}>Performance optimization</span> for 3D web experiences</li>
+                            <li>• <span style={{ color: currentTheme.cursor }}>Creative coding</span> and visual storytelling</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      Three.js
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      WebGL
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      JavaScript
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      3D Graphics
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      CAD Modeling
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      Interactive Design
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Project 5: OpenGL Ray Tracing */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.9 }}
+                className="border-l-2 pl-4"
+                style={{ borderColor: currentTheme.error }}
+              >
+                <div className="mb-3">
+                  <div className="flex items-center gap-3 mb-2">
+                    <h3 className="text-lg font-semibold" style={{ color: currentTheme.variable }}>
+                      OpenGL Ray Tracer
+                    </h3>
+                    <span className="px-2 py-1 text-xs rounded flex items-center gap-1" style={{
+                      backgroundColor: currentTheme.keyword,
+                      color: currentTheme.terminalBg,
+                      fontWeight: '500'
+                    }}>
+                      🎮 Complete
+                    </span>
+                  </div>
+                  <div className="mb-3" style={{ color: currentTheme.textSecondary, lineHeight: '1.5' }}>
+                    Advanced C++ ray tracing engine implementing modern rendering techniques and physically-based algorithms.
+                    Features bidirectional path tracing, volumetric scattering, subsurface scattering, and spectral rendering.
+                    Implements sophisticated algorithms including importance sampling, Russian roulette termination, multiple importance sampling,
+                    and optimized acceleration structures with custom SIMD vectorization for high-performance rendering.
+                  </div>
+
+                  <button
+                    onClick={() => setExpandedProject(expandedProject === 'raytracer' ? null : 'raytracer')}
+                    className="mb-3 text-xs hover:underline transition-colors flex items-center gap-1"
+                    style={{ color: currentTheme.command }}
+                  >
+                    <span>{expandedProject === 'raytracer' ? '▼' : '▶'}</span>
+                    {expandedProject === 'raytracer' ? 'Hide Graphics Details' : 'Show Ray Tracing Architecture'}
+                  </button>
+
+                  {expandedProject === 'raytracer' && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="mb-4 p-3 rounded"
+                      style={{
+                        backgroundColor: currentTheme.terminalHeader,
+                        border: `1px solid ${currentTheme.terminalBorder}`,
+                        fontSize: '11px',
+                        lineHeight: '1.4'
+                      }}
+                    >
+                      <div className="space-y-3">
+                        <div>
+                          <h4 className="font-semibold mb-2" style={{ color: currentTheme.variable }}>
+                            🧮 Advanced Mathematical Foundations & Algorithms
+                          </h4>
+                          <ul className="space-y-1 pl-4" style={{ color: currentTheme.textSecondary }}>
+                            <li>• <span style={{ color: currentTheme.keyword }}>Quaternion mathematics</span> for robust 3D rotations and camera transformations</li>
+                            <li>• <span style={{ color: currentTheme.keyword }}>Spectral power distribution</span> calculations for wavelength-dependent rendering</li>
+                            <li>• <span style={{ color: currentTheme.keyword }}>Stochastic sampling theory</span> with low-discrepancy sequences (Halton, Sobol)</li>
+                            <li>• <span style={{ color: currentTheme.keyword }}>Probability density functions</span> for importance sampling and BRDF evaluation</li>
+                            <li>• <span style={{ color: currentTheme.keyword }}>Fourier analysis</span> for procedural texture synthesis and filtering</li>
+                          </ul>
+                        </div>
+
+                        <div>
+                          <h4 className="font-semibold mb-2" style={{ color: currentTheme.variable }}>
+                            💡 Advanced Rendering & Light Transport Theory
+                          </h4>
+                          <ul className="space-y-1 pl-4" style={{ color: currentTheme.textSecondary }}>
+                            <li>• <span style={{ color: currentTheme.string }}>Bidirectional path tracing</span> with multiple importance sampling for unbiased rendering</li>
+                            <li>• <span style={{ color: currentTheme.string }}>Metropolis light transport</span> for complex caustic and indirect illumination</li>
+                            <li>• <span style={{ color: currentTheme.string }}>Microfacet BRDF models</span> (Cook-Torrance, GGX/Trowbridge-Reitz distribution)</li>
+                            <li>• <span style={{ color: currentTheme.string }}>Volumetric scattering</span> with phase functions and participating media simulation</li>
+                            <li>• <span style={{ color: currentTheme.string }}>Subsurface scattering</span> using dipole approximation and BSSRDF evaluation</li>
+                          </ul>
+                        </div>
+
+                        <div>
+                          <h4 className="font-semibold mb-2" style={{ color: currentTheme.variable }}>
+                            🎨 Advanced Scene Architecture & Materials
+                          </h4>
+                          <ul className="space-y-1 pl-4" style={{ color: currentTheme.textSecondary }}>
+                            <li>• <span style={{ color: currentTheme.cursor }}>Constructive solid geometry</span> (CSG) with boolean operations on implicit surfaces</li>
+                            <li>• <span style={{ color: currentTheme.cursor }}>Procedural material networks</span> with node-based shader composition</li>
+                            <li>• <span style={{ color: currentTheme.cursor }}>Displacement mapping</span> and tessellation for micro-geometry detail</li>
+                            <li>• <span style={{ color: currentTheme.cursor }}>Adaptive mesh refinement</span> for dynamic level-of-detail rendering</li>
+                            <li>• <span style={{ color: currentTheme.cursor }}>Instanced geometry</span> with transform hierarchies and motion blur support</li>
+                          </ul>
+                        </div>
+
+                        <div>
+                          <h4 className="font-semibold mb-2" style={{ color: currentTheme.variable }}>
+                            ⚡ High-Performance Computing & Architecture
+                          </h4>
+                          <ul className="space-y-1 pl-4" style={{ color: currentTheme.textSecondary }}>
+                            <li>• <span style={{ color: currentTheme.comment }}>Custom SIMD kernels</span> (AVX2/AVX-512) for vectorized ray-triangle intersection</li>
+                            <li>• <span style={{ color: currentTheme.comment }}>Lock-free data structures</span> for multi-threaded tile-based rendering</li>
+                            <li>• <span style={{ color: currentTheme.comment }}>NUMA-aware memory allocation</span> with custom allocators for cache optimization</li>
+                            <li>• <span style={{ color: currentTheme.comment }}>Branch prediction optimization</span> and instruction-level parallelism techniques</li>
+                            <li>• <span style={{ color: currentTheme.comment }}>GPU compute shaders</span> for hybrid CPU/GPU acceleration with CUDA interop</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      C++
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      Path Tracing
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      SIMD/AVX
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      BRDF/BSSRDF
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      Metropolis Sampling
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      Spectral Rendering
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      Volumetric Media
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 1.1 }}
+                className="mt-6"
+                style={{ color: currentTheme.textMuted }}
+              >
                 <div className="mb-2">
                   <span style={{ color: currentTheme.comment }}>{'//'}</span> More projects coming soon...
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="mt-6" style={{ color: currentTheme.cursor }}>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.3, delay: 1.3 }}
+                className="mt-6"
+                style={{ color: currentTheme.cursor }}
+              >
                 <span className="animate-pulse">▊</span>
-              </div>
+              </motion.div>
             </div>
           </motion.div>
         )}
