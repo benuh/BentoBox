@@ -601,11 +601,507 @@ export default function Terminal({ className, style }: TerminalProps) {
                 </div>
               </motion.div>
 
-              {/* Project 2: LitLMC */}
+              {/* Project 2: Stem Cell Therapy Analysis */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="border-l-2 pl-4"
+                style={{ borderColor: currentTheme.cursor }}
+              >
+                <div className="mb-3">
+                  <div className="flex items-center gap-3 mb-2">
+                    <h3 className="text-lg font-semibold" style={{ color: currentTheme.variable }}>
+                      Stem Cell Therapy Analysis
+                    </h3>
+                    <span className="px-2 py-1 text-xs rounded flex items-center gap-1" style={{
+                      backgroundColor: currentTheme.cursor,
+                      color: currentTheme.terminalBg,
+                      fontWeight: '500'
+                    }}>
+                      <span className="w-2 h-2 rounded-full animate-pulse" style={{
+                        backgroundColor: currentTheme.terminalBg
+                      }}></span>
+                      Active Development
+                    </span>
+                  </div>
+                  <div className="mb-2">
+                    <span style={{ color: currentTheme.keyword }}>Repository:</span>{' '}
+                    <a
+                      href="https://github.com/benuh/stem-cell-therapy-analysis"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:underline transition-colors"
+                      style={{ color: currentTheme.string }}
+                    >
+                      github.com/benuh/stem-cell-therapy-analysis
+                    </a>
+                  </div>
+                  <div className="mb-3" style={{ color: currentTheme.textSecondary, lineHeight: '1.5' }}>
+                    Advanced data science framework for analyzing stem cell therapy clinical trials, combining statistical methods,
+                    machine learning, and operational research to accelerate clinical development and improve patient outcomes.
+                    Analyzed 750+ patients across 15+ trials with 85% prediction accuracy using sophisticated algorithms including
+                    Bayesian meta-analysis, survival analysis, and anomaly detection.
+                  </div>
+
+                  <button
+                    onClick={() => setExpandedProject(expandedProject === 'stemcell' ? null : 'stemcell')}
+                    className="mb-3 text-xs hover:underline transition-colors flex items-center gap-1"
+                    style={{ color: currentTheme.command }}
+                  >
+                    <span>{expandedProject === 'stemcell' ? '▼' : '▶'}</span>
+                    {expandedProject === 'stemcell' ? 'Hide Clinical Details' : 'Show Research Analytics'}
+                  </button>
+
+                  {expandedProject === 'stemcell' && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="mb-4 p-3 rounded"
+                      style={{
+                        backgroundColor: currentTheme.terminalHeader,
+                        border: `1px solid ${currentTheme.terminalBorder}`,
+                        fontSize: '11px',
+                        lineHeight: '1.4'
+                      }}
+                    >
+                      <div className="space-y-3">
+                        <div>
+                          <h4 className="font-semibold mb-2" style={{ color: currentTheme.variable }}>
+                            🧬 Clinical Trial Analysis
+                          </h4>
+                          <ul className="space-y-1 pl-4" style={{ color: currentTheme.textSecondary }}>
+                            <li>• <span style={{ color: currentTheme.keyword }}>Bayesian meta-analysis</span> for treatment efficacy assessment</li>
+                            <li>• <span style={{ color: currentTheme.keyword }}>Survival analysis</span> with Kaplan-Meier estimators</li>
+                            <li>• <span style={{ color: currentTheme.keyword }}>Hypothesis testing</span> for statistical significance evaluation</li>
+                            <li>• <span style={{ color: currentTheme.keyword }}>Anomaly detection</span> for identifying unusual trial patterns</li>
+                          </ul>
+                        </div>
+
+                        <div>
+                          <h4 className="font-semibold mb-2" style={{ color: currentTheme.variable }}>
+                            🤖 Machine Learning Pipeline
+                          </h4>
+                          <ul className="space-y-1 pl-4" style={{ color: currentTheme.textSecondary }}>
+                            <li>• <span style={{ color: currentTheme.string }}>15+ predictive algorithms</span> for treatment outcome forecasting</li>
+                            <li>• <span style={{ color: currentTheme.string }}>Pattern recognition</span> for identifying successful therapy protocols</li>
+                            <li>• <span style={{ color: currentTheme.string }}>Cross-validation techniques</span> achieving 85% prediction accuracy</li>
+                            <li>• <span style={{ color: currentTheme.string }}>Feature engineering</span> for patient demographic optimization</li>
+                          </ul>
+                        </div>
+
+                        <div>
+                          <h4 className="font-semibold mb-2" style={{ color: currentTheme.variable }}>
+                            📊 Statistical Modeling & Visualization
+                          </h4>
+                          <ul className="space-y-1 pl-4" style={{ color: currentTheme.textSecondary }}>
+                            <li>• <span style={{ color: currentTheme.cursor }}>Interactive dashboards</span> for real-time clinical monitoring</li>
+                            <li>• <span style={{ color: currentTheme.cursor }}>Comprehensive visualization</span> of treatment correlations</li>
+                            <li>• <span style={{ color: currentTheme.cursor }}>Treatment protocol optimization</span> algorithms</li>
+                            <li>• <span style={{ color: currentTheme.cursor }}>FDA regulatory database</span> integration planning</li>
+                          </ul>
+                        </div>
+
+                        <div>
+                          <h4 className="font-semibold mb-2" style={{ color: currentTheme.variable }}>
+                            ⚡ Technical Infrastructure
+                          </h4>
+                          <ul className="space-y-1 pl-4" style={{ color: currentTheme.textSecondary }}>
+                            <li>• <span style={{ color: currentTheme.comment }}>Python 3.8+</span> with advanced data science libraries</li>
+                            <li>• <span style={{ color: currentTheme.comment }}>Machine learning frameworks</span> for scalable model deployment</li>
+                            <li>• <span style={{ color: currentTheme.comment }}>Statistical analysis tools</span> for robust clinical insights</li>
+                            <li>• <span style={{ color: currentTheme.comment }}>Federated learning architecture</span> for multi-site collaboration</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      Python
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      Machine Learning
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      Clinical Analytics
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      Bayesian Analysis
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      Data Science
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      Survival Analysis
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Project 3: Risk Calculation Data */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
+                className="border-l-2 pl-4"
+                style={{ borderColor: currentTheme.cursor }}
+              >
+                <div className="mb-3">
+                  <div className="flex items-center gap-3 mb-2">
+                    <h3 className="text-lg font-semibold" style={{ color: currentTheme.variable }}>
+                      Risk Calculation Data
+                    </h3>
+                    <span className="px-2 py-1 text-xs rounded flex items-center gap-1" style={{
+                      backgroundColor: currentTheme.cursor,
+                      color: currentTheme.terminalBg,
+                      fontWeight: '500'
+                    }}>
+                      <span className="w-2 h-2 rounded-full animate-pulse" style={{
+                        backgroundColor: currentTheme.terminalBg
+                      }}></span>
+                      Active Development
+                    </span>
+                  </div>
+                  <div className="mb-2">
+                    <span style={{ color: currentTheme.keyword }}>Repository:</span>{' '}
+                    <a
+                      href="https://github.com/benuh/risk-calculation-data"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:underline transition-colors"
+                      style={{ color: currentTheme.string }}
+                    >
+                      github.com/benuh/risk-calculation-data
+                    </a>
+                  </div>
+                  <div className="mb-3" style={{ color: currentTheme.textSecondary, lineHeight: '1.5' }}>
+                    Financial risk analytics platform integrating real-time market data for advanced portfolio risk assessment.
+                    Features comprehensive risk modeling algorithms including VaR calculations, beta coefficient analysis, and correlation-based
+                    portfolio optimization. Demonstrates expertise in quantitative finance, statistical modeling, and real-time data processing
+                    with integration of multiple financial APIs and economic indicators.
+                  </div>
+
+                  <button
+                    onClick={() => setExpandedProject(expandedProject === 'riskdata' ? null : 'riskdata')}
+                    className="mb-3 text-xs hover:underline transition-colors flex items-center gap-1"
+                    style={{ color: currentTheme.command }}
+                  >
+                    <span>{expandedProject === 'riskdata' ? '▼' : '▶'}</span>
+                    {expandedProject === 'riskdata' ? 'Hide Financial Details' : 'Show Risk Analytics Stack'}
+                  </button>
+
+                  {expandedProject === 'riskdata' && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="mb-4 p-3 rounded"
+                      style={{
+                        backgroundColor: currentTheme.terminalHeader,
+                        border: `1px solid ${currentTheme.terminalBorder}`,
+                        fontSize: '11px',
+                        lineHeight: '1.4'
+                      }}
+                    >
+                      <div className="space-y-3">
+                        <div>
+                          <h4 className="font-semibold mb-2" style={{ color: currentTheme.variable }}>
+                            📊 Financial Risk Modeling
+                          </h4>
+                          <ul className="space-y-1 pl-4" style={{ color: currentTheme.textSecondary }}>
+                            <li>• <span style={{ color: currentTheme.keyword }}>Value at Risk (VaR)</span> calculations with Monte Carlo simulation</li>
+                            <li>• <span style={{ color: currentTheme.keyword }}>Beta coefficient analysis</span> for systematic risk assessment</li>
+                            <li>• <span style={{ color: currentTheme.keyword }}>Sharpe ratio optimization</span> for risk-adjusted return analysis</li>
+                            <li>• <span style={{ color: currentTheme.keyword }}>Portfolio volatility modeling</span> with correlation matrix computation</li>
+                          </ul>
+                        </div>
+
+                        <div>
+                          <h4 className="font-semibold mb-2" style={{ color: currentTheme.variable }}>
+                            🔄 Real-Time Data Integration
+                          </h4>
+                          <ul className="space-y-1 pl-4" style={{ color: currentTheme.textSecondary }}>
+                            <li>• <span style={{ color: currentTheme.string }}>Financial Modeling Prep API</span> for live market data</li>
+                            <li>• <span style={{ color: currentTheme.string }}>Quandl API integration</span> for economic indicators</li>
+                            <li>• <span style={{ color: currentTheme.string }}>Multi-symbol data processing</span> with concurrent API requests</li>
+                            <li>• <span style={{ color: currentTheme.string }}>ESG scoring integration</span> for sustainable investment analysis</li>
+                          </ul>
+                        </div>
+
+                        <div>
+                          <h4 className="font-semibold mb-2" style={{ color: currentTheme.variable }}>
+                            📈 Statistical Analysis & Algorithms
+                          </h4>
+                          <ul className="space-y-1 pl-4" style={{ color: currentTheme.textSecondary }}>
+                            <li>• <span style={{ color: currentTheme.cursor }}>Time series analysis</span> for trend identification and forecasting</li>
+                            <li>• <span style={{ color: currentTheme.cursor }}>Correlation analysis</span> for portfolio diversification optimization</li>
+                            <li>• <span style={{ color: currentTheme.cursor }}>Statistical volatility models</span> including GARCH implementations</li>
+                            <li>• <span style={{ color: currentTheme.cursor }}>Risk attribution analysis</span> for factor-based portfolio decomposition</li>
+                          </ul>
+                        </div>
+
+                        <div>
+                          <h4 className="font-semibold mb-2" style={{ color: currentTheme.variable }}>
+                            ⚡ Technical Implementation
+                          </h4>
+                          <ul className="space-y-1 pl-4" style={{ color: currentTheme.textSecondary }}>
+                            <li>• <span style={{ color: currentTheme.comment }}>Node.js backend</span> with modular architecture design</li>
+                            <li>• <span style={{ color: currentTheme.comment }}>Asynchronous data processing</span> for high-throughput calculations</li>
+                            <li>• <span style={{ color: currentTheme.comment }}>Configuration-driven</span> risk parameter management</li>
+                            <li>• <span style={{ color: currentTheme.comment }}>Extensible framework</span> for custom risk metric implementation</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      Node.js
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      Financial Modeling
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      Risk Analytics
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      API Integration
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      Quantitative Finance
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      Statistical Modeling
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Project 4: LitLMC */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="border-l-2 pl-4"
+                style={{ borderColor: currentTheme.comment }}
+              >
+                  <div className="mb-2">
+                    <span style={{ color: currentTheme.keyword }}>Repository:</span>{' '}
+                    <a
+                      href="https://github.com/benuh/MiniGPT"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:underline transition-colors"
+                      style={{ color: currentTheme.string }}
+                    >
+                      github.com/benuh/MiniGPT
+                    </a>
+                  </div>
+                  <div className="mb-3" style={{ color: currentTheme.textSecondary, lineHeight: '1.5' }}>
+                    Educational Transformer implementation designed for hands-on learning and experimentation.
+                    Provides accessible, modular architecture for understanding attention mechanisms, model scaling, and training dynamics.
+                    Features interactive training pipelines with W&B monitoring, enabling learners to experiment with hyperparameters
+                    and observe real-time model behavior. Full-stack deployment demonstrates end-to-end ML system development.
+                  </div>
+                  <div className="mb-3" style={{ color: currentTheme.textMuted, fontSize: '11px', fontStyle: 'italic' }}>
+                    📚 Detailed architecture references and implementation guides available on the{' '}
+                    <span style={{ color: currentTheme.string, fontFamily: '"JetBrains Mono", monospace' }}>CoreInfrastructure</span> page
+                  </div>
+
+                  <button
+                    onClick={() => setExpandedProject(expandedProject === 'minigpt' ? null : 'minigpt')}
+                    className="mb-3 text-xs hover:underline transition-colors flex items-center gap-1"
+                    style={{ color: currentTheme.command }}
+                  >
+                    <span>{expandedProject === 'minigpt' ? '▼' : '▶'}</span>
+                    {expandedProject === 'minigpt' ? 'Hide Details' : 'Show Architecture Details'}
+                  </button>
+
+                  {expandedProject === 'minigpt' && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="mb-4 p-3 rounded"
+                      style={{
+                        backgroundColor: currentTheme.terminalHeader,
+                        border: `1px solid ${currentTheme.terminalBorder}`,
+                        fontSize: '11px',
+                        lineHeight: '1.4'
+                      }}
+                    >
+                      <div className="space-y-3">
+                        <div>
+                          <h4 className="font-semibold mb-2" style={{ color: currentTheme.variable }}>
+                            🏗️ Core Architecture
+                          </h4>
+                          <ul className="space-y-1 pl-4" style={{ color: currentTheme.textSecondary }}>
+                            <li>• <span style={{ color: currentTheme.keyword }}>Multi-head attention</span> with causal masking</li>
+                            <li>• <span style={{ color: currentTheme.keyword }}>Learned position embeddings</span> for sequence understanding</li>
+                            <li>• <span style={{ color: currentTheme.keyword }}>GELU activation</span> functions with layer normalization</li>
+                            <li>• <span style={{ color: currentTheme.keyword }}>Modular transformer blocks</span> (~87K parameters, 4 layers)</li>
+                          </ul>
+                        </div>
+
+                        <div>
+                          <h4 className="font-semibold mb-2" style={{ color: currentTheme.variable }}>
+                            🔄 Training Pipeline
+                          </h4>
+                          <ul className="space-y-1 pl-4" style={{ color: currentTheme.textSecondary }}>
+                            <li>• <span style={{ color: currentTheme.string }}>AdamW optimizer</span> with linear warmup scheduling</li>
+                            <li>• <span style={{ color: currentTheme.string }}>Automatic checkpointing</span> and validation tracking</li>
+                            <li>• <span style={{ color: currentTheme.string }}>Cross-entropy loss</span> for next-token prediction</li>
+                            <li>• <span style={{ color: currentTheme.string }}>Real-time monitoring</span> with Weights & Biases integration</li>
+                          </ul>
+                        </div>
+
+                        <div>
+                          <h4 className="font-semibold mb-2" style={{ color: currentTheme.variable }}>
+                            🚀 Deployment Stack
+                          </h4>
+                          <ul className="space-y-1 pl-4" style={{ color: currentTheme.textSecondary }}>
+                            <li>• <span style={{ color: currentTheme.cursor }}>React frontend</span> with interactive parameter controls</li>
+                            <li>• <span style={{ color: currentTheme.cursor }}>REST API server</span> for model inference</li>
+                            <li>• <span style={{ color: currentTheme.cursor }}>Docker containerization</span> with Kubernetes orchestration</li>
+                            <li>• <span style={{ color: currentTheme.cursor }}>YAML-based configuration</span> management</li>
+                          </ul>
+                        </div>
+
+                        <div>
+                          <h4 className="font-semibold mb-2" style={{ color: currentTheme.variable }}>
+                            🎯 Key Features
+                          </h4>
+                          <ul className="space-y-1 pl-4" style={{ color: currentTheme.textSecondary }}>
+                            <li>• <span style={{ color: currentTheme.comment }}>Temperature & top-k sampling</span> for controlled generation</li>
+                            <li>• <span style={{ color: currentTheme.comment }}>Configurable context window</span> management</li>
+                            <li>• <span style={{ color: currentTheme.comment }}>Device-agnostic deployment</span> (GPU/MPS/CPU)</li>
+                            <li>• <span style={{ color: currentTheme.comment }}>Interactive chat interface</span> with real-time inference</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      PyTorch
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      Transformers
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      React
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      REST API
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      Docker
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      W&B
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      Kubernetes
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      YAML
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Project 4: LitLMC */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
                 className="border-l-2 pl-4"
                 style={{ borderColor: currentTheme.comment }}
               >
@@ -765,7 +1261,7 @@ export default function Terminal({ className, style }: TerminalProps) {
                 </div>
               </motion.div>
 
-              {/* Project 3: Unicorn-Explosion */}
+              {/* Project 5: Unicorn-Explosion */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -929,11 +1425,11 @@ export default function Terminal({ className, style }: TerminalProps) {
                 </div>
               </motion.div>
 
-              {/* Project 4: threeJSPortfolio */}
+              {/* Project 6: threeJSPortfolio */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.7 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
                 className="border-l-2 pl-4"
                 style={{ borderColor: currentTheme.variable }}
               >
@@ -1079,11 +1575,11 @@ export default function Terminal({ className, style }: TerminalProps) {
                 </div>
               </motion.div>
 
-              {/* Project 5: OpenGL Ray Tracing */}
+              {/* Project 7: OpenGL Ray Tracing */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.9 }}
+                transition={{ duration: 0.6, delay: 0.7 }}
                 className="border-l-2 pl-4"
                 style={{ borderColor: currentTheme.error }}
               >
@@ -1243,7 +1739,7 @@ export default function Terminal({ className, style }: TerminalProps) {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 1.1 }}
+                transition={{ duration: 0.5, delay: 0.9 }}
                 className="mt-6"
                 style={{ color: currentTheme.textMuted }}
               >
@@ -1255,7 +1751,7 @@ export default function Terminal({ className, style }: TerminalProps) {
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.3, delay: 1.3 }}
+                transition={{ duration: 0.3, delay: 1.1 }}
                 className="mt-6"
                 style={{ color: currentTheme.cursor }}
               >
