@@ -939,39 +939,48 @@ export default function Terminal({ className, style }: TerminalProps) {
                 className="border-l-2 pl-4"
                 style={{ borderColor: currentTheme.comment }}
               >
+                <div className="mb-3">
+                  <div className="flex items-center gap-3 mb-2">
+                    <h3 className="text-lg font-semibold" style={{ color: currentTheme.variable }}>
+                      LitLMC
+                    </h3>
+                    <span className="px-2 py-1 text-xs rounded flex items-center gap-1" style={{
+                      backgroundColor: currentTheme.textSecondary,
+                      color: currentTheme.terminalBg,
+                      fontWeight: '500'
+                    }}>
+                      🔧 Maintaining
+                    </span>
+                  </div>
                   <div className="mb-2">
                     <span style={{ color: currentTheme.keyword }}>Repository:</span>{' '}
                     <a
-                      href="https://github.com/benuh/MiniGPT"
+                      href="https://github.com/benuh/LitLMC"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="hover:underline transition-colors"
                       style={{ color: currentTheme.string }}
                     >
-                      github.com/benuh/MiniGPT
+                      github.com/benuh/LitLMC
                     </a>
                   </div>
                   <div className="mb-3" style={{ color: currentTheme.textSecondary, lineHeight: '1.5' }}>
-                    Educational Transformer implementation designed for hands-on learning and experimentation.
-                    Provides accessible, modular architecture for understanding attention mechanisms, model scaling, and training dynamics.
-                    Features interactive training pipelines with W&B monitoring, enabling learners to experiment with hyperparameters
-                    and observe real-time model behavior. Full-stack deployment demonstrates end-to-end ML system development.
-                  </div>
-                  <div className="mb-3" style={{ color: currentTheme.textMuted, fontSize: '11px', fontStyle: 'italic' }}>
-                    📚 Detailed architecture references and implementation guides available on the{' '}
-                    <span style={{ color: currentTheme.string, fontFamily: '"JetBrains Mono", monospace' }}>CoreInfrastructure</span> page
+                    Experimental neural network built from scratch in C++ to address LLM accuracy and efficiency challenges.
+                    While most successful LLMs use Python with specialized libraries, this project explores the performance benefits
+                    of lower-level languages with direct GPU interaction. Demonstrates the strategic approach of understanding
+                    core algorithms before scaling - validating the concept for future Python-to-C++ translation workflows.
                   </div>
 
                   <button
-                    onClick={() => setExpandedProject(expandedProject === 'minigpt' ? null : 'minigpt')}
+                    onClick={() => setExpandedProject(expandedProject === 'litlmc' ? null : 'litlmc')}
                     className="mb-3 text-xs hover:underline transition-colors flex items-center gap-1"
                     style={{ color: currentTheme.command }}
                   >
-                    <span>{expandedProject === 'minigpt' ? '▼' : '▶'}</span>
-                    {expandedProject === 'minigpt' ? 'Hide Details' : 'Show Architecture Details'}
+                    <span>{expandedProject === 'litlmc' ? '▼' : '▶'}</span>
+                    {expandedProject === 'litlmc' ? 'Hide Implementation Details' : 'Show C++ Architecture'}
                   </button>
 
-                  {expandedProject === 'minigpt' && (
+                  {expandedProject === 'litlmc' && (
                     <motion.div
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: 'auto' }}
