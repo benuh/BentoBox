@@ -49,11 +49,37 @@ export default function DeveloperPage() {
           </Link>
         </div>
 
-        {/* Theme Toggle - Top Right */}
-        <div className="absolute z-10" style={{
+        {/* Theme Toggle and Resume - Top Right */}
+        <div className="absolute z-10 flex gap-3" style={{
           top: 'clamp(1rem, 2vw, 1.5rem)',
           right: 'clamp(1rem, 2vw, 1.5rem)'
         }}>
+          <a
+            href="/BH_Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center rounded-lg transition-all duration-200"
+            style={{
+              fontFamily: '"JetBrains Mono", monospace',
+              color: currentTheme.navText,
+              textDecoration: 'none',
+              fontSize: 'clamp(0.7rem, 1.2vw, 0.9rem)',
+              fontWeight: 500,
+              padding: 'clamp(0.5rem, 1vw, 0.75rem) clamp(0.75rem, 1.5vw, 1rem)',
+              backgroundColor: 'transparent',
+              border: `1px solid ${currentTheme.navText}20`
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = currentTheme.navHover
+              e.currentTarget.style.borderColor = currentTheme.navText + '40'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = 'transparent'
+              e.currentTarget.style.borderColor = currentTheme.navText + '20'
+            }}
+          >
+            📄 Resume
+          </a>
           <ThemeToggle />
         </div>
 

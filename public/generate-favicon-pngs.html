@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate BH Favicon PNG Files</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+        .container { background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
+        canvas { border: 2px solid #ddd; margin: 10px; background: white; }
+        button {
+            background: #007bff; color: white; padding: 10px 20px;
+            border: none; border-radius: 5px; cursor: pointer; margin: 5px;
+        }
+        button:hover { background: #0056b3; }
+        .preview-grid { display: flex; flex-wrap: wrap; gap: 20px; }
+        .size-info { text-align: center; margin-top: 10px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 BH Periodic Table Favicon Generator</h1>
+        <p>This will generate your periodic table style "BH" favicon in multiple sizes:</p>
+
+        <div class="preview-grid">
+            <div>
+                <canvas id="canvas16" width="16" height="16"></canvas>
+                <div class="size-info">16×16 favicon.ico</div>
+                <button onclick="downloadCanvas('canvas16', 'favicon.ico')">Download ICO</button>
+            </div>
+
+            <div>
+                <canvas id="canvas32" width="32" height="32"></canvas>
+                <div class="size-info">32×32 favicon-32x32.png</div>
+                <button onclick="downloadCanvas('canvas32', 'favicon-32x32.png')">Download PNG</button>
+            </div>
+
+            <div>
+                <canvas id="canvas180" width="180" height="180"></canvas>
+                <div class="size-info">180×180 apple-touch-icon.png</div>
+                <button onclick="downloadCanvas('canvas180', 'apple-touch-icon.png')">Download Apple Icon</button>
+            </div>
+        </div>
+
+        <button onclick="downloadAll()" style="background: #28a745; font-size: 16px; padding: 15px 30px;">
+            📦 Download All Favicon Files
+        </button>
+    </div>
+
+    <div class="container">
+        <h2>📋 Installation Instructions:</h2>
+        <ol>
+            <li>Click "Download All Favicon Files" above</li>
+            <li>Move the downloaded files to your <code>public/</code> folder</li>
+            <li>Your Next.js app will automatically detect them</li>
+            <li>The layout.tsx has already been updated with proper metadata</li>
+        </ol>
+
+        <h3>🎨 Design Details:</h3>
+        <ul>
+            <li><strong>Element:</strong> BH (Benjamin Hu)</li>
+            <li><strong>Atomic Number:</strong> 5 (inspired by Boron)</li>
+            <li><strong>Style:</strong> Dark theme matching your portfolio</li>
+            <li><strong>Colors:</strong> Professional tech colors (#2d3748, #f7fafc)</li>
+        </ul>
+    </div>
+
+    <script>
+        function drawPeriodicElement(ctx, size) {
+            const s = size / 32; // Scale factor
+
+            // Clear canvas with transparency
+            ctx.clearRect(0, 0, size, size);
+
+            // Main background square with rounded corners
+            ctx.fillStyle = '#2d3748';
+            ctx.strokeStyle = '#4a5568';
+            ctx.lineWidth = Math.max(1, 1 * s);
+
+            // Draw rounded rectangle
+            const radius = 2 * s;
+            const x = 1 * s, y = 1 * s, w = 30 * s, h = 30 * s;
+
+            ctx.beginPath();
+            ctx.moveTo(x + radius, y);
+            ctx.lineTo(x + w - radius, y);
+            ctx.quadraticCurveTo(x + w, y, x + w, y + radius);
+            ctx.lineTo(x + w, y + h - radius);
+            ctx.quadraticCurveTo(x + w, y + h, x + w - radius, y + h);
+            ctx.lineTo(x + radius, y + h);
+            ctx.quadraticCurveTo(x, y + h, x, y + h - radius);
+            ctx.lineTo(x, y + radius);
+            ctx.quadraticCurveTo(x, y, x + radius, y);
+            ctx.closePath();
+
+            ctx.fill();
+            ctx.stroke();
+
+            // Inner border for depth
+            ctx.strokeStyle = '#718096';
+            ctx.lineWidth = Math.max(0.5, 0.5 * s);
+            ctx.strokeRect(2 * s, 2 * s, 28 * s, 28 * s);
+
+            // Atomic number (top left)
+            ctx.fillStyle = '#a0aec0';
+            ctx.font = `${Math.max(8, 4 * s)}px Arial, sans-serif`;
+            ctx.textAlign = 'left';
+            ctx.textBaseline = 'top';
+            ctx.fillText('5', 3 * s, 3 * s);
+
+            // Main element symbol (center)
+            ctx.fillStyle = '#f7fafc';
+            ctx.font = `bold ${Math.max(20, 12 * s)}px Arial, sans-serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('BH', 16 * s, 16 * s);
+
+            // Atomic weight (bottom)
+            ctx.fillStyle = '#a0aec0';
+            ctx.font = `${Math.max(6, 3.5 * s)}px Arial, sans-serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'bottom';
+            ctx.fillText('10.81', 16 * s, 29 * s);
+        }
+
+        function downloadCanvas(canvasId, filename) {
+            const canvas = document.getElementById(canvasId);
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+
+        function downloadAll() {
+            setTimeout(() => downloadCanvas('canvas16', 'favicon.ico'), 100);
+            setTimeout(() => downloadCanvas('canvas32', 'favicon-32x32.png'), 200);
+            setTimeout(() => downloadCanvas('canvas180', 'apple-touch-icon.png'), 300);
+        }
+
+        // Generate all favicons
+        ['canvas16', 'canvas32', 'canvas180'].forEach(id => {
+            const canvas = document.getElementById(id);
+            const ctx = canvas.getContext('2d');
+            const size = parseInt(canvas.width);
+
+            // Enable anti-aliasing for better quality
+            ctx.imageSmoothingEnabled = true;
+            ctx.imageSmoothingQuality = 'high';
+
+            drawPeriodicElement(ctx, size);
+        });
+    </script>
+</body>
+</html>

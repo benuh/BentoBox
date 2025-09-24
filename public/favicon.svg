@@ -1,0 +1,16 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background square with periodic table styling -->
+  <rect x="1" y="1" width="30" height="30" fill="#2d3748" stroke="#4a5568" stroke-width="1" rx="2"/>
+
+  <!-- Inner border for depth -->
+  <rect x="2" y="2" width="28" height="28" fill="none" stroke="#718096" stroke-width="0.5" rx="1.5"/>
+
+  <!-- Atomic number (top left) -->
+  <text x="3" y="7" font-family="Arial, sans-serif" font-size="4" fill="#a0aec0" font-weight="normal">5</text>
+
+  <!-- Element symbol (center) -->
+  <text x="16" y="21" font-family="Arial, sans-serif" font-size="12" fill="#f7fafc" font-weight="bold" text-anchor="middle">BH</text>
+
+  <!-- Atomic weight (bottom) -->
+  <text x="16" y="28" font-family="Arial, sans-serif" font-size="3.5" fill="#a0aec0" text-anchor="middle">10.81</text>
+</svg>

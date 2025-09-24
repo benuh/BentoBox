@@ -443,23 +443,37 @@ export default function Terminal({ className, style }: TerminalProps) {
                       Active Development
                     </span>
                   </div>
-                  <div className="mb-2">
-                    <span style={{ color: currentTheme.keyword }}>Repository:</span>{' '}
-                    <a
-                      href="https://github.com/benuh/MiniGPT"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="hover:underline transition-colors"
-                      style={{ color: currentTheme.string }}
-                    >
-                      github.com/benuh/MiniGPT
-                    </a>
+                  <div className="mb-2 space-y-1">
+                    <div>
+                      <span style={{ color: currentTheme.keyword }}>Educational Framework:</span>{' '}
+                      <a
+                        href="https://github.com/benuh/MiniGPT"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:underline transition-colors"
+                        style={{ color: currentTheme.string }}
+                      >
+                        github.com/benuh/MiniGPT
+                      </a>
+                    </div>
+                    <div>
+                      <span style={{ color: currentTheme.keyword }}>Production Backend:</span>{' '}
+                      <a
+                        href="https://github.com/benuh/llm-chatbot-backend"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:underline transition-colors"
+                        style={{ color: currentTheme.string }}
+                      >
+                        github.com/benuh/llm-chatbot-backend
+                      </a>
+                    </div>
                   </div>
                   <div className="mb-3" style={{ color: currentTheme.textSecondary, lineHeight: '1.5' }}>
-                    Educational Transformer implementation designed for hands-on learning and experimentation.
-                    Provides accessible, modular architecture for understanding attention mechanisms, model scaling, and training dynamics.
-                    Features interactive training pipelines with W&B monitoring, enabling learners to experiment with hyperparameters
-                    and observe real-time model behavior. Full-stack deployment demonstrates end-to-end ML system development.
+                    Comprehensive AI/ML platform combining educational transformer implementation with production-ready chatbot infrastructure.
+                    Features hands-on learning with custom GPT architecture, plus professional FastAPI backend supporting multiple LLM providers
+                    (OpenRouter, Groq) with ultra-fast inference up to 300+ tokens/second. Demonstrates end-to-end ML development from
+                    foundational understanding to scalable deployment.
                   </div>
                   <div className="mb-3" style={{ color: currentTheme.textMuted, fontSize: '11px', fontStyle: 'italic' }}>
                     📚 Detailed architecture references and implementation guides available on the{' '}
@@ -472,7 +486,7 @@ export default function Terminal({ className, style }: TerminalProps) {
                     style={{ color: currentTheme.command }}
                   >
                     <span>{expandedProject === 'minigpt' ? '▼' : '▶'}</span>
-                    {expandedProject === 'minigpt' ? 'Hide Details' : 'Show Architecture Details'}
+                    {expandedProject === 'minigpt' ? 'Hide Platform Details' : 'Show AI/ML Platform Architecture'}
                   </button>
 
                   {expandedProject === 'minigpt' && (
@@ -492,49 +506,51 @@ export default function Terminal({ className, style }: TerminalProps) {
                       <div className="space-y-3">
                         <div>
                           <h4 className="font-semibold mb-2" style={{ color: currentTheme.variable }}>
-                            🏗️ Core Architecture
+                            🎓 Educational Framework (MiniGPT)
                           </h4>
                           <ul className="space-y-1 pl-4" style={{ color: currentTheme.textSecondary }}>
-                            <li>• <span style={{ color: currentTheme.keyword }}>Multi-head attention</span> with causal masking</li>
+                            <li>• <span style={{ color: currentTheme.keyword }}>Multi-head attention</span> with causal masking implementation</li>
                             <li>• <span style={{ color: currentTheme.keyword }}>Learned position embeddings</span> for sequence understanding</li>
                             <li>• <span style={{ color: currentTheme.keyword }}>GELU activation</span> functions with layer normalization</li>
                             <li>• <span style={{ color: currentTheme.keyword }}>Modular transformer blocks</span> (~87K parameters, 4 layers)</li>
+                            <li>• <span style={{ color: currentTheme.keyword }}>Interactive training</span> with W&B monitoring and experimentation</li>
                           </ul>
                         </div>
 
                         <div>
                           <h4 className="font-semibold mb-2" style={{ color: currentTheme.variable }}>
-                            🔄 Training Pipeline
+                            🚀 Production Backend (LLM Chatbot)
                           </h4>
                           <ul className="space-y-1 pl-4" style={{ color: currentTheme.textSecondary }}>
-                            <li>• <span style={{ color: currentTheme.string }}>AdamW optimizer</span> with linear warmup scheduling</li>
-                            <li>• <span style={{ color: currentTheme.string }}>Automatic checkpointing</span> and validation tracking</li>
-                            <li>• <span style={{ color: currentTheme.string }}>Cross-entropy loss</span> for next-token prediction</li>
-                            <li>• <span style={{ color: currentTheme.string }}>Real-time monitoring</span> with Weights & Biases integration</li>
+                            <li>• <span style={{ color: currentTheme.string }}>FastAPI framework</span> with professional REST API design</li>
+                            <li>• <span style={{ color: currentTheme.string }}>Multi-provider support</span> (OpenRouter, Groq) with runtime switching</li>
+                            <li>• <span style={{ color: currentTheme.string }}>Ultra-fast inference</span> up to 300+ tokens/second with Groq</li>
+                            <li>• <span style={{ color: currentTheme.string }}>Multiple LLMs</span> (DeepSeek, Llama 3.3 70B, Gemma 2, Mixtral 8x7B)</li>
+                            <li>• <span style={{ color: currentTheme.string }}>Conversation management</span> with 128K token context windows</li>
                           </ul>
                         </div>
 
                         <div>
                           <h4 className="font-semibold mb-2" style={{ color: currentTheme.variable }}>
-                            🚀 Deployment Stack
+                            🔄 Integrated Architecture
                           </h4>
                           <ul className="space-y-1 pl-4" style={{ color: currentTheme.textSecondary }}>
-                            <li>• <span style={{ color: currentTheme.cursor }}>React frontend</span> with interactive parameter controls</li>
-                            <li>• <span style={{ color: currentTheme.cursor }}>REST API server</span> for model inference</li>
+                            <li>• <span style={{ color: currentTheme.cursor }}>Educational-to-production</span> workflow demonstration</li>
+                            <li>• <span style={{ color: currentTheme.cursor }}>Custom model training</span> with production deployment pipeline</li>
                             <li>• <span style={{ color: currentTheme.cursor }}>Docker containerization</span> with Kubernetes orchestration</li>
-                            <li>• <span style={{ color: currentTheme.cursor }}>YAML-based configuration</span> management</li>
+                            <li>• <span style={{ color: currentTheme.cursor }}>Interactive CLI client</span> and web interface components</li>
                           </ul>
                         </div>
 
                         <div>
                           <h4 className="font-semibold mb-2" style={{ color: currentTheme.variable }}>
-                            🎯 Key Features
+                            ⚡ Key Platform Features
                           </h4>
                           <ul className="space-y-1 pl-4" style={{ color: currentTheme.textSecondary }}>
-                            <li>• <span style={{ color: currentTheme.comment }}>Temperature & top-k sampling</span> for controlled generation</li>
-                            <li>• <span style={{ color: currentTheme.comment }}>Configurable context window</span> management</li>
-                            <li>• <span style={{ color: currentTheme.comment }}>Device-agnostic deployment</span> (GPU/MPS/CPU)</li>
-                            <li>• <span style={{ color: currentTheme.comment }}>Interactive chat interface</span> with real-time inference</li>
+                            <li>• <span style={{ color: currentTheme.comment }}>Free AI model integration</span> for cost-effective development</li>
+                            <li>• <span style={{ color: currentTheme.comment }}>Temperature & sampling controls</span> for response customization</li>
+                            <li>• <span style={{ color: currentTheme.comment }}>Comprehensive error handling</span> and monitoring systems</li>
+                            <li>• <span style={{ color: currentTheme.comment }}>Real-time chat interface</span> with context preservation</li>
                           </ul>
                         </div>
                       </div>
@@ -553,7 +569,21 @@ export default function Terminal({ className, style }: TerminalProps) {
                       color: currentTheme.command,
                       border: `1px solid ${currentTheme.terminalBorder}`
                     }}>
+                      FastAPI
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
                       Transformers
+                    </span>
+                    <span className="px-2 py-1 text-xs rounded" style={{
+                      backgroundColor: currentTheme.terminalHeader,
+                      color: currentTheme.command,
+                      border: `1px solid ${currentTheme.terminalBorder}`
+                    }}>
+                      LLM Integration
                     </span>
                     <span className="px-2 py-1 text-xs rounded" style={{
                       backgroundColor: currentTheme.terminalHeader,
@@ -567,13 +597,6 @@ export default function Terminal({ className, style }: TerminalProps) {
                       color: currentTheme.command,
                       border: `1px solid ${currentTheme.terminalBorder}`
                     }}>
-                      REST API
-                    </span>
-                    <span className="px-2 py-1 text-xs rounded" style={{
-                      backgroundColor: currentTheme.terminalHeader,
-                      color: currentTheme.command,
-                      border: `1px solid ${currentTheme.terminalBorder}`
-                    }}>
                       Docker
                     </span>
                     <span className="px-2 py-1 text-xs rounded" style={{
@@ -581,21 +604,14 @@ export default function Terminal({ className, style }: TerminalProps) {
                       color: currentTheme.command,
                       border: `1px solid ${currentTheme.terminalBorder}`
                     }}>
-                      W&B
+                      OpenRouter
                     </span>
                     <span className="px-2 py-1 text-xs rounded" style={{
                       backgroundColor: currentTheme.terminalHeader,
                       color: currentTheme.command,
                       border: `1px solid ${currentTheme.terminalBorder}`
                     }}>
-                      Kubernetes
-                    </span>
-                    <span className="px-2 py-1 text-xs rounded" style={{
-                      backgroundColor: currentTheme.terminalHeader,
-                      color: currentTheme.command,
-                      border: `1px solid ${currentTheme.terminalBorder}`
-                    }}>
-                      YAML
+                      Groq
                     </span>
                   </div>
                 </div>
