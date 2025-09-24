@@ -54,32 +54,80 @@ export default function DeveloperPage() {
           top: 'clamp(1rem, 2vw, 1.5rem)',
           right: 'clamp(1rem, 2vw, 1.5rem)'
         }}>
-          <a
-            href="/BH_Resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center rounded-lg transition-all duration-200"
-            style={{
-              fontFamily: '"JetBrains Mono", monospace',
-              color: currentTheme.navText,
-              textDecoration: 'none',
-              fontSize: 'clamp(0.7rem, 1.2vw, 0.9rem)',
-              fontWeight: 500,
-              padding: 'clamp(0.5rem, 1vw, 0.75rem) clamp(0.75rem, 1.5vw, 1rem)',
-              backgroundColor: 'transparent',
-              border: `1px solid ${currentTheme.navText}20`
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = currentTheme.navHover
-              e.currentTarget.style.borderColor = currentTheme.navText + '40'
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = 'transparent'
-              e.currentTarget.style.borderColor = currentTheme.navText + '20'
-            }}
-          >
-            📄 Resume
-          </a>
+          <div className="relative group">
+            <button
+              className="inline-flex items-center rounded-lg transition-all duration-200"
+              style={{
+                fontFamily: '"JetBrains Mono", monospace',
+                color: currentTheme.navText,
+                fontSize: 'clamp(0.7rem, 1.2vw, 0.9rem)',
+                fontWeight: 500,
+                padding: 'clamp(0.5rem, 1vw, 0.75rem) clamp(0.75rem, 1.5vw, 1rem)',
+                backgroundColor: 'transparent',
+                border: `1px solid ${currentTheme.navText}20`,
+                cursor: 'pointer'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = currentTheme.navHover
+                e.currentTarget.style.borderColor = currentTheme.navText + '40'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'transparent'
+                e.currentTarget.style.borderColor = currentTheme.navText + '20'
+              }}
+            >
+              📄 Resume
+            </button>
+
+            {/* Resume Dropdown Menu */}
+            <div className="absolute top-full right-0 mt-2 py-2 w-48 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-20"
+                 style={{
+                   backgroundColor: currentTheme.terminalBg,
+                   border: `1px solid ${currentTheme.terminalBorder}`
+                 }}>
+              <a
+                href="/BH_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-4 py-2 transition-colors duration-200"
+                style={{
+                  fontFamily: '"JetBrains Mono", monospace',
+                  fontSize: '0.8rem',
+                  color: currentTheme.textPrimary,
+                  textDecoration: 'none'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = currentTheme.terminalHeader
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'transparent'
+                }}
+              >
+                <span>👁️</span>
+                <span>View Resume</span>
+              </a>
+              <a
+                href="/BH_Resume.pdf"
+                download="Benjamin_Hu_Resume.pdf"
+                className="flex items-center gap-2 px-4 py-2 transition-colors duration-200"
+                style={{
+                  fontFamily: '"JetBrains Mono", monospace',
+                  fontSize: '0.8rem',
+                  color: currentTheme.textPrimary,
+                  textDecoration: 'none'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = currentTheme.terminalHeader
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'transparent'
+                }}
+              >
+                <span>💾</span>
+                <span>Download PDF</span>
+              </a>
+            </div>
+          </div>
           <ThemeToggle />
         </div>
 
@@ -137,6 +185,29 @@ export default function DeveloperPage() {
                 }}>
                   &gt; Software Developer
                 </h2>
+              </div>
+
+              {/* Resume Highlights */}
+              <div className="mb-6 p-4 rounded-lg" style={{
+                backgroundColor: currentTheme.terminalHeader,
+                border: `1px solid ${currentTheme.terminalBorder}`
+              }}>
+                <h3 className="text-lg font-semibold mb-3" style={{
+                  color: currentTheme.variable,
+                  fontFamily: '"JetBrains Mono", monospace'
+                }}>
+                  💼 Experience Summary
+                </h3>
+                <div className="space-y-2" style={{
+                  fontSize: 'clamp(0.75rem, 1.5vw, 0.9rem)',
+                  color: currentTheme.textSecondary,
+                  fontFamily: '"JetBrains Mono", monospace'
+                }}>
+                  <div>🏢 <strong>Vantage Risk</strong> - Full Stack Engineer (Current)</div>
+                  <div>🔒 <strong>Theom.AI</strong> - Full Stack Engineer (2023)</div>
+                  <div>🎓 <strong>UC Irvine</strong> - Research Assistant (2021-2022)</div>
+                  <div>🎯 <strong>UCSD</strong> - Computer Science & Mathematics</div>
+                </div>
               </div>
 
               {/* Social Icons */}
@@ -233,6 +304,28 @@ export default function DeveloperPage() {
               }}>
                 &gt; Software Developer
               </h2>
+            </div>
+
+            {/* Resume Highlights - Mobile */}
+            <div className="mb-6 p-3 rounded-lg" style={{
+              backgroundColor: currentTheme.terminalHeader,
+              border: `1px solid ${currentTheme.terminalBorder}`
+            }}>
+              <h3 className="text-sm font-semibold mb-2" style={{
+                color: currentTheme.variable,
+                fontFamily: '"JetBrains Mono", monospace'
+              }}>
+                💼 Experience
+              </h3>
+              <div className="space-y-1" style={{
+                fontSize: 'clamp(0.7rem, 3vw, 0.8rem)',
+                color: currentTheme.textSecondary,
+                fontFamily: '"JetBrains Mono", monospace'
+              }}>
+                <div>🏢 <strong>Vantage Risk</strong> - Current</div>
+                <div>🔒 <strong>Theom.AI</strong> - 2023</div>
+                <div>🎓 <strong>UC Irvine</strong> - Research</div>
+              </div>
             </div>
 
             {/* Social Icons */}
