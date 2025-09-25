@@ -470,10 +470,9 @@ export default function Terminal({ className, style }: TerminalProps) {
                     </div>
                   </div>
                   <div className="mb-3" style={{ color: currentTheme.textSecondary, lineHeight: '1.5' }}>
-                    Comprehensive AI/ML platform combining educational transformer implementation with production-ready chatbot infrastructure.
-                    Features hands-on learning with custom GPT architecture, plus professional FastAPI backend supporting multiple LLM providers
-                    (OpenRouter, Groq) with ultra-fast inference up to 300+ tokens/second. Demonstrates end-to-end ML development from
-                    foundational understanding to scalable deployment.
+                    Dual-approach AI project: educational transformer implementation from scratch in PyTorch, plus production chatbot
+                    backend achieving 300+ tokens/sec via Groq API. The first taught me multi-head attention and positional embeddings;
+                    the second handles real conversations with multiple LLM providers. Bridging theory and practice in modern AI development.
                   </div>
                   <div className="mb-3" style={{ color: currentTheme.textMuted, fontSize: '11px', fontStyle: 'italic' }}>
                     📚 Detailed architecture references and implementation guides available on the{' '}
@@ -654,10 +653,9 @@ export default function Terminal({ className, style }: TerminalProps) {
                     </a>
                   </div>
                   <div className="mb-3" style={{ color: currentTheme.textSecondary, lineHeight: '1.5' }}>
-                    Advanced data science framework for analyzing stem cell therapy clinical trials, combining statistical methods,
-                    machine learning, and operational research to accelerate clinical development and improve patient outcomes.
-                    Analyzed 750+ patients across 15+ trials with 85% prediction accuracy using sophisticated algorithms including
-                    Bayesian meta-analysis, survival analysis, and anomaly detection.
+                    Clinical research project analyzing 750+ patients across 15 stem cell therapy trials. Built predictive models using
+                    Bayesian meta-analysis and survival analysis, achieving 85% accuracy in treatment response prediction. Combined traditional
+                    biostatistics with machine learning to identify patient subgroups most likely to benefit from therapy.
                   </div>
 
                   <button
@@ -819,10 +817,9 @@ export default function Terminal({ className, style }: TerminalProps) {
                     </a>
                   </div>
                   <div className="mb-3" style={{ color: currentTheme.textSecondary, lineHeight: '1.5' }}>
-                    Financial risk analytics platform integrating real-time market data for advanced portfolio risk assessment.
-                    Features comprehensive risk modeling algorithms including VaR calculations, beta coefficient analysis, and correlation-based
-                    portfolio optimization. Demonstrates expertise in quantitative finance, statistical modeling, and real-time data processing
-                    with integration of multiple financial APIs and economic indicators.
+                    Financial risk calculation engine for portfolio management at Vantage Risk. Implements Monte Carlo simulations
+                    for Value-at-Risk calculations, correlation matrix analysis, and stress testing scenarios. Optimized for sub-2-second
+                    response times using Node.js with custom C++ modules for computationally intensive statistical operations.
                   </div>
 
                   <button
@@ -961,11 +958,14 @@ export default function Terminal({ className, style }: TerminalProps) {
                       LitLMC
                     </h3>
                     <span className="px-2 py-1 text-xs rounded flex items-center gap-1" style={{
-                      backgroundColor: currentTheme.textSecondary,
+                      backgroundColor: currentTheme.cursor,
                       color: currentTheme.terminalBg,
                       fontWeight: '500'
                     }}>
-                      🔧 Maintaining
+                      <span className="w-2 h-2 rounded-full animate-pulse" style={{
+                        backgroundColor: currentTheme.terminalBg
+                      }}></span>
+                      Complete
                     </span>
                   </div>
                   <div className="mb-2">
@@ -981,10 +981,10 @@ export default function Terminal({ className, style }: TerminalProps) {
                     </a>
                   </div>
                   <div className="mb-3" style={{ color: currentTheme.textSecondary, lineHeight: '1.5' }}>
-                    Experimental neural network built from scratch in C++ to address LLM accuracy and efficiency challenges.
-                    While most successful LLMs use Python with specialized libraries, this project explores the performance benefits
-                    of lower-level languages with direct GPU interaction. Demonstrates the strategic approach of understanding
-                    core algorithms before scaling - validating the concept for future Python-to-C++ translation workflows.
+                    Educational transformer implementation built from first principles in PyTorch. Implements multi-head attention,
+                    learned positional embeddings, and GELU activation with layer normalization. Small-scale (~87K parameters) but
+                    demonstrates deep understanding of transformer architecture beyond API consumption. Includes training pipeline
+                    with W&B monitoring and deployment infrastructure.
                   </div>
 
                   <button
@@ -1122,7 +1122,7 @@ export default function Terminal({ className, style }: TerminalProps) {
                 </div>
               </motion.div>
 
-              {/* Project 4: LitLMC */}
+              {/* Project 4: FPGA Game Engine */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -1133,45 +1133,48 @@ export default function Terminal({ className, style }: TerminalProps) {
                 <div className="mb-3">
                   <div className="flex items-center gap-3 mb-2">
                     <h3 className="text-lg font-semibold" style={{ color: currentTheme.variable }}>
-                      LitLMC
+                      FPGA Game Engine
                     </h3>
                     <span className="px-2 py-1 text-xs rounded flex items-center gap-1" style={{
-                      backgroundColor: currentTheme.textSecondary,
+                      backgroundColor: currentTheme.cursor,
                       color: currentTheme.terminalBg,
                       fontWeight: '500'
                     }}>
-                      🔧 Maintaining
+                      <span className="w-2 h-2 rounded-full animate-pulse" style={{
+                        backgroundColor: currentTheme.terminalBg
+                      }}></span>
+                      Complete
                     </span>
                   </div>
                   <div className="mb-2">
                     <span style={{ color: currentTheme.keyword }}>Repository:</span>{' '}
                     <a
-                      href="https://github.com/benuh/LitLMC"
+                      href="https://github.com/benuh/FPGA-Game-Engine"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="hover:underline transition-colors"
                       style={{ color: currentTheme.string }}
                     >
-                      github.com/benuh/LitLMC
+                      github.com/benuh/FPGA-Game-Engine
                     </a>
                   </div>
                   <div className="mb-3" style={{ color: currentTheme.textSecondary, lineHeight: '1.5' }}>
-                    Experimental neural network built from scratch in C++ to address LLM accuracy and efficiency challenges.
-                    While most successful LLMs use Python with specialized libraries, this project explores the performance benefits
-                    of lower-level languages with direct GPU interaction. Demonstrates the strategic approach of understanding
-                    core algorithms before scaling - validating the concept for future Python-to-C++ translation workflows.
+                    Complete game engine implemented in Verilog HDL for FPGA deployment. Features custom audio synthesis, VGA graphics
+                    rendering, collision detection, and procedural map generation. Demonstrates hardware-software co-design with multiple
+                    parallel subsystems coordinated through finite state machines. Successfully deployed on Nexys 4 DDR with responsive
+                    real-time gameplay.
                   </div>
 
                   <button
-                    onClick={() => setExpandedProject(expandedProject === 'litlmc' ? null : 'litlmc')}
+                    onClick={() => setExpandedProject(expandedProject === 'fpga-game' ? null : 'fpga-game')}
                     className="mb-3 text-xs hover:underline transition-colors flex items-center gap-1"
                     style={{ color: currentTheme.command }}
                   >
-                    <span>{expandedProject === 'litlmc' ? '▼' : '▶'}</span>
-                    {expandedProject === 'litlmc' ? 'Hide Implementation Details' : 'Show C++ Architecture'}
+                    <span>{expandedProject === 'fpga-game' ? '▼' : '▶'}</span>
+                    {expandedProject === 'fpga-game' ? 'Hide Hardware Details' : 'Show FPGA Architecture'}
                   </button>
 
-                  {expandedProject === 'litlmc' && (
+                  {expandedProject === 'fpga-game' && (
                     <motion.div
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: 'auto' }}
@@ -1300,11 +1303,14 @@ export default function Terminal({ className, style }: TerminalProps) {
                       Unicorn-Explosion
                     </h3>
                     <span className="px-2 py-1 text-xs rounded flex items-center gap-1" style={{
-                      backgroundColor: currentTheme.keyword,
+                      backgroundColor: currentTheme.cursor,
                       color: currentTheme.terminalBg,
                       fontWeight: '500'
                     }}>
-                      🎮 Complete
+                      <span className="w-2 h-2 rounded-full animate-pulse" style={{
+                        backgroundColor: currentTheme.terminalBg
+                      }}></span>
+                      Complete
                     </span>
                   </div>
                   <div className="mb-2">
@@ -1320,10 +1326,10 @@ export default function Terminal({ className, style }: TerminalProps) {
                     </a>
                   </div>
                   <div className="mb-3" style={{ color: currentTheme.textSecondary, lineHeight: '1.5' }}>
-                    Computer Engineering project featuring a complete arcade game system designed from scratch in Verilog HDL.
-                    Demonstrates microcontroller programming principles with custom hardware modules for audio synthesis,
-                    VGA graphics rendering, and real-time user interaction. Built on Nexys 4 DDR FPGA to showcase
-                    low-level digital system design and embedded hardware architecture.
+                    Whimsical arcade shooter implemented entirely in Verilog HDL on Nexys 4 DDR FPGA. Features complete VGA graphics
+                    pipeline, custom sound synthesis, collision detection algorithms, and real-time user interaction. Demonstrates
+                    low-level digital system design with careful attention to timing constraints and clock domain management across
+                    multiple concurrent hardware modules.
                   </div>
 
                   <button

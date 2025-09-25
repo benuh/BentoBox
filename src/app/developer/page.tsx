@@ -178,14 +178,16 @@ export default function DeveloperPage() {
           <ThemeToggle />
         </div>
 
-        {/* Desktop Layout - Redesigned */}
-        <div className="hidden md:flex flex-col h-full min-h-screen">
-          {/* Top Section - Profile Header with Tech Aesthetic */}
-          <div className="relative flex items-center justify-between px-8 py-6 overflow-hidden" style={{
-            background: `linear-gradient(135deg, ${currentTheme.terminalHeader}15, ${currentTheme.terminalBg}25)`,
-            borderBottom: `2px solid ${currentTheme.variable}40`,
-            boxShadow: `0 4px 20px ${currentTheme.terminalBorder}30`
-          }}>
+        {/* Desktop Layout - Clean Grid System */}
+        <div className="hidden md:grid grid-cols-12 gap-6 min-h-screen p-6">
+
+          {/* Top Header - Full Width */}
+          <div className="col-span-12 mb-4">
+            <div className="relative flex items-center justify-between px-8 py-6 rounded-xl overflow-hidden" style={{
+              background: `linear-gradient(135deg, ${currentTheme.terminalHeader}15, ${currentTheme.terminalBg}25)`,
+              border: `1px solid ${currentTheme.variable}20`,
+              boxShadow: `0 8px 32px ${currentTheme.terminalBorder}20`
+            }}>
             {/* Animated Background Pattern */}
             <div className="absolute inset-0 opacity-10" style={{
               backgroundImage: `radial-gradient(circle at 20px 20px, ${currentTheme.variable} 1px, transparent 1px)`,
@@ -293,379 +295,215 @@ export default function DeveloperPage() {
             </div>
           </div>
 
-          {/* Main Content - Two Column Layout */}
-          <div className="flex-1 flex">
-            {/* Left Column - Experience & Skills with Tech Styling */}
-            <div className="w-80 flex-shrink-0 p-6 overflow-y-auto relative" style={{
-              background: `linear-gradient(180deg, ${currentTheme.terminalHeader}08, ${currentTheme.terminalBg}15)`,
-              borderRight: `2px solid ${currentTheme.variable}20`,
-              backdropFilter: 'blur(10px)'
+          {/* Status Card - Clean and Organized */}
+          <div className="col-span-12 lg:col-span-4 space-y-6">
+
+            {/* Current Status */}
+            <div className="p-6 rounded-xl" style={{
+              background: `linear-gradient(135deg, ${currentTheme.terminalBg}90, ${currentTheme.terminalHeader}40)`,
+              border: `1px solid ${currentTheme.variable}30`,
+              boxShadow: `0 8px 32px ${currentTheme.terminalBorder}15`
             }}>
-              {/* Matrix-style side decoration */}
-              <div className="absolute left-0 top-0 w-1 h-full opacity-50" style={{
-                background: `linear-gradient(to bottom, ${currentTheme.variable}00, ${currentTheme.variable}, ${currentTheme.variable}00)`,
-                animation: 'pulse 2s ease-in-out infinite alternate'
-              }}></div>
-
-              {/* Current Status with Enhanced Styling */}
-              <div className="mb-6 p-4 rounded-lg relative overflow-hidden" style={{
-                backgroundColor: currentTheme.terminalBg + '80',
-                border: `2px solid ${currentTheme.variable}30`,
-                boxShadow: `0 8px 25px ${currentTheme.terminalBorder}20`,
-                backdropFilter: 'blur(5px)'
-              }}>
-                {/* Animated border gradient */}
-                <div className="absolute inset-0 rounded-lg opacity-30" style={{
-                  background: `linear-gradient(45deg, ${currentTheme.variable}20, transparent, ${currentTheme.variable}20)`,
-                  animation: 'gradient-shift 3s ease-in-out infinite'
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-3 h-3 rounded-full bg-green-400 animate-pulse" style={{
+                  boxShadow: '0 0 15px rgba(16, 185, 129, 0.6)'
                 }}></div>
-
-                <div className="flex items-center gap-3 mb-3 relative z-10">
-                  <div className="relative">
-                    <span className="w-3 h-3 rounded-full bg-green-400 animate-pulse flex items-center justify-center" style={{
-                      boxShadow: '0 0 10px #10B981'
-                    }}>
-                      <span className="w-1 h-1 rounded-full bg-white"></span>
-                    </span>
-                    <span className="absolute inset-0 w-3 h-3 rounded-full bg-green-400 animate-ping opacity-30"></span>
-                  </div>
-                  <span style={{
-                    fontFamily: '"JetBrains Mono", monospace',
-                    fontSize: '0.9rem',
-                    color: currentTheme.variable,
-                    fontWeight: 700,
-                    letterSpacing: '0.05em'
-                  }}>
-                    SYSTEM.STATUS: ONLINE
-                  </span>
-                </div>
-                <p className="relative z-10" style={{
-                  fontSize: '0.8rem',
-                  color: currentTheme.textSecondary,
+                <h3 style={{
                   fontFamily: '"JetBrains Mono", monospace',
-                  lineHeight: '1.6'
+                  fontSize: '1rem',
+                  color: currentTheme.variable,
+                  fontWeight: 700,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.05em'
                 }}>
-                  <span style={{ color: currentTheme.variable }}>{'>'}</span> Seeking opportunities in AI/ML, fintech, and full-stack development
-                </p>
+                  Available for Work
+                </h3>
+              </div>
+              <p style={{
+                fontSize: '0.9rem',
+                color: currentTheme.textSecondary,
+                fontFamily: '"Inter", sans-serif',
+                lineHeight: '1.6'
+              }}>
+                Open to opportunities in AI/ML, fintech, and full-stack development
+              </p>
+            </div>
 
-                {/* Tech readout style decoration */}
-                <div className="flex gap-1 mt-3 relative z-10">
-                  {[...Array(8)].map((_, i) => (
-                    <div
-                      key={i}
-                      className="w-1 h-1 rounded-full animate-pulse"
-                      style={{
-                        backgroundColor: i % 2 === 0 ? currentTheme.variable : currentTheme.textSecondary,
-                        animationDelay: `${i * 0.2}s`,
-                        animationDuration: '1.5s'
-                      }}
-                    ></div>
-                  ))}
+            {/* Experience Timeline */}
+            <div className="p-6 rounded-xl" style={{
+              background: `linear-gradient(135deg, ${currentTheme.terminalBg}90, ${currentTheme.terminalHeader}40)`,
+              border: `1px solid ${currentTheme.variable}30`,
+              boxShadow: `0 8px 32px ${currentTheme.terminalBorder}15`
+            }}>
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{
+                  backgroundColor: currentTheme.variable + '20',
+                  border: `1px solid ${currentTheme.variable}40`
+                }}>
+                  <span style={{ fontSize: '1rem' }}>💼</span>
                 </div>
+                <h3 style={{
+                  color: currentTheme.textPrimary,
+                  fontFamily: '"Inter", sans-serif',
+                  fontSize: '1.2rem',
+                  fontWeight: 700
+                }}>
+                  Experience
+                </h3>
               </div>
 
-              {/* Experience Timeline with Tech Enhancement */}
-              <div className="mb-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-6 h-6 rounded flex items-center justify-center" style={{
-                    backgroundColor: currentTheme.variable + '20',
-                    border: `1px solid ${currentTheme.variable}50`
+              <div className="space-y-4">
+                {[
+                  { company: 'Vantage Risk', role: 'Full Stack Engineer', period: 'Jan 2024 - Present', status: 'Current', color: '#10B981' },
+                  { company: 'Theom.AI', role: 'Full Stack Engineer', period: 'Apr 2023 - Dec 2023', status: 'Complete', color: '#3B82F6' },
+                  { company: 'UC Irvine', role: 'Research Assistant', period: 'Jul 2021 - Jun 2022', status: 'Complete', color: '#8B5CF6' }
+                ].map((exp, i) => (
+                  <div key={i} className="p-4 rounded-lg transition-all duration-200 hover:scale-[1.02]" style={{
+                    background: `linear-gradient(135deg, ${currentTheme.terminalHeader}60, ${currentTheme.terminalBg}80)`,
+                    border: `1px solid ${exp.color}30`,
+                    borderLeft: `4px solid ${exp.color}`
                   }}>
-                    <span style={{ fontSize: '0.8rem' }}>💻</span>
-                  </div>
-                  <h3 style={{
-                    color: currentTheme.variable,
-                    fontFamily: '"JetBrains Mono", monospace',
-                    fontSize: '1rem',
-                    fontWeight: 700,
-                    letterSpacing: '0.05em',
-                    textTransform: 'uppercase'
-                  }}>
-                    Experience.Log
-                  </h3>
-                  <div className="flex-1 h-px" style={{
-                    background: `linear-gradient(to right, ${currentTheme.variable}60, transparent)`
-                  }}></div>
-                </div>
-
-                <div className="space-y-3 relative">
-                  {/* Timeline Line */}
-                  <div className="absolute left-4 top-0 w-0.5 h-full" style={{
-                    background: `linear-gradient(to bottom, ${currentTheme.variable}60, ${currentTheme.variable}20, transparent)`
-                  }}></div>
-
-                  {/* Experience Cards */}
-                  {[
-                    { company: 'Vantage Risk', role: 'Full Stack Engineer', period: 'Jan 2024 - Present', status: 'ACTIVE', accent: '#10B981' },
-                    { company: 'Theom.AI', role: 'Full Stack Engineer', period: 'Apr 2023 - Dec 2023', status: 'COMPLETED', accent: '#3B82F6' },
-                    { company: 'UC Irvine', role: 'Research Assistant', period: 'Jul 2021 - Jun 2022', status: 'COMPLETED', accent: '#8B5CF6' }
-                  ].map((exp, i) => (
-                    <div key={i} className="relative pl-8 group">
-                      {/* Timeline dot */}
-                      <div className="absolute left-2.5 top-3 w-3 h-3 rounded-full border-2 group-hover:scale-125 transition-transform duration-200" style={{
-                        backgroundColor: exp.accent,
-                        borderColor: currentTheme.terminalBg,
-                        boxShadow: `0 0 10px ${exp.accent}40`
-                      }}></div>
-
-                      <div className="p-4 rounded-lg backdrop-blur-sm transition-all duration-300 group-hover:scale-105" style={{
-                        backgroundColor: currentTheme.terminalBg + '60',
-                        border: `1px solid ${currentTheme.terminalBorder}40`,
-                        borderLeftColor: exp.accent + '60',
-                        borderLeftWidth: '3px',
-                        boxShadow: `0 4px 15px ${currentTheme.terminalBorder}20`
-                      }}>
-                        <div className="flex items-center justify-between mb-2">
-                          <div className="font-semibold" style={{
-                            color: currentTheme.textPrimary,
-                            fontSize: '0.9rem',
-                            fontFamily: '"JetBrains Mono", monospace'
-                          }}>
-                            {exp.company}
-                          </div>
-                          <span className="px-2 py-1 text-xs rounded-full" style={{
-                            backgroundColor: exp.accent + '20',
-                            color: exp.accent,
-                            fontFamily: '"JetBrains Mono", monospace',
-                            fontWeight: 600
-                          }}>
-                            {exp.status}
-                          </span>
-                        </div>
-                        <div style={{
+                    <div className="flex items-start justify-between mb-2">
+                      <div>
+                        <h4 style={{
+                          color: currentTheme.textPrimary,
+                          fontSize: '1rem',
+                          fontWeight: 600,
+                          fontFamily: '"Inter", sans-serif'
+                        }}>
+                          {exp.company}
+                        </h4>
+                        <p style={{
                           color: currentTheme.variable,
-                          fontSize: '0.8rem',
-                          fontFamily: '"JetBrains Mono", monospace',
-                          marginBottom: '0.25rem'
+                          fontSize: '0.85rem',
+                          fontFamily: '"Inter", sans-serif',
+                          marginTop: '2px'
                         }}>
                           {exp.role}
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <span style={{
-                            color: currentTheme.textSecondary,
-                            fontSize: '0.75rem',
-                            fontFamily: '"JetBrains Mono", monospace'
-                          }}>
-                            {exp.period}
-                          </span>
-                          <div className="flex gap-1">
-                            {[...Array(3)].map((_, j) => (
-                              <div
-                                key={j}
-                                className="w-1 h-1 rounded-full opacity-60"
-                                style={{
-                                  backgroundColor: exp.accent,
-                                  animation: `pulse 1.5s ease-in-out infinite`,
-                                  animationDelay: `${j * 0.3}s`
-                                }}
-                              ></div>
-                            ))}
-                          </div>
-                        </div>
+                        </p>
                       </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Enhanced Skills Section */}
-              <div className="mb-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-6 h-6 rounded flex items-center justify-center" style={{
-                    backgroundColor: currentTheme.variable + '20',
-                    border: `1px solid ${currentTheme.variable}50`
-                  }}>
-                    <span style={{ fontSize: '0.8rem' }}>⚡</span>
-                  </div>
-                  <h3 style={{
-                    color: currentTheme.variable,
-                    fontFamily: '"JetBrains Mono", monospace',
-                    fontSize: '1rem',
-                    fontWeight: 700,
-                    letterSpacing: '0.05em',
-                    textTransform: 'uppercase'
-                  }}>
-                    Tech.Stack
-                  </h3>
-                  <div className="flex-1 h-px" style={{
-                    background: `linear-gradient(to right, ${currentTheme.variable}60, transparent)`
-                  }}></div>
-                </div>
-
-                <div className="grid grid-cols-2 gap-3">
-                  {[
-                    { name: 'Python', level: 95, icon: '🐍' },
-                    { name: 'React', level: 90, icon: '⚛️' },
-                    { name: 'AI/ML', level: 85, icon: '🤖' },
-                    { name: 'Node.js', level: 88, icon: '📗' },
-                    { name: 'Docker', level: 82, icon: '🐳' },
-                    { name: 'AWS', level: 80, icon: '☁️' }
-                  ].map((skill, i) => (
-                    <div
-                      key={skill.name}
-                      className="p-3 rounded-lg backdrop-blur-sm group hover:scale-105 transition-all duration-300"
-                      style={{
-                        backgroundColor: currentTheme.terminalBg + '40',
-                        border: `1px solid ${currentTheme.variable}30`,
-                        boxShadow: `0 2px 10px ${currentTheme.terminalBorder}20`
-                      }}
-                    >
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="flex items-center gap-2">
-                          <span style={{ fontSize: '0.8rem' }}>{skill.icon}</span>
-                          <span style={{
-                            fontFamily: '"JetBrains Mono", monospace',
-                            fontSize: '0.8rem',
-                            color: currentTheme.textPrimary,
-                            fontWeight: 600
-                          }}>
-                            {skill.name}
-                          </span>
-                        </div>
-                        <span style={{
-                          fontSize: '0.7rem',
-                          color: currentTheme.variable,
-                          fontFamily: '"JetBrains Mono", monospace'
-                        }}>
-                          {skill.level}%
-                        </span>
-                      </div>
-
-                      {/* Skill Progress Bar */}
-                      <div className="w-full h-1 rounded-full overflow-hidden" style={{
-                        backgroundColor: currentTheme.terminalBorder + '30'
+                      <span className="px-3 py-1 text-xs rounded-full" style={{
+                        backgroundColor: exp.color + '20',
+                        color: exp.color,
+                        fontFamily: '"Inter", sans-serif',
+                        fontWeight: 600
                       }}>
-                        <div
-                          className="h-full rounded-full transition-all duration-1000 ease-out"
-                          style={{
-                            width: `${skill.level}%`,
-                            background: `linear-gradient(90deg, ${currentTheme.variable}80, ${currentTheme.variable})`,
-                            boxShadow: `0 0 10px ${currentTheme.variable}60`,
-                            animation: `skill-load-${i} 2s ease-out`
-                          }}
-                        ></div>
-                      </div>
-
-                      {/* Binary decoration */}
-                      <div className="mt-2 opacity-30 text-xs" style={{
-                        fontFamily: '"JetBrains Mono", monospace',
-                        color: currentTheme.textSecondary,
-                        fontSize: '0.6rem',
-                        lineHeight: 1
-                      }}>
-                        {Math.random().toString(2).substr(2, 8)}
-                      </div>
+                        {exp.status}
+                      </span>
                     </div>
-                  ))}
-                </div>
-
-                {/* System Resource Monitor Style */}
-                <div className="mt-4 p-3 rounded-lg" style={{
-                  backgroundColor: currentTheme.terminalBg + '30',
-                  border: `1px solid ${currentTheme.variable}20`
-                }}>
-                  <div className="flex items-center justify-between text-xs" style={{
-                    fontFamily: '"JetBrains Mono", monospace',
-                    color: currentTheme.textSecondary
-                  }}>
-                    <span>SKILL.METRICS</span>
-                    <div className="flex gap-2">
-                      <span style={{ color: currentTheme.variable }}>CPU: 85%</span>
-                      <span style={{ color: '#10B981' }}>MEM: 78%</span>
-                      <span style={{ color: '#F59E0B' }}>NET: 92%</span>
-                    </div>
+                    <p style={{
+                      color: currentTheme.textSecondary,
+                      fontSize: '0.8rem',
+                      fontFamily: '"Inter", sans-serif'
+                    }}>
+                      {exp.period}
+                    </p>
                   </div>
-                </div>
+                ))}
               </div>
             </div>
+          </div>
 
-            {/* Right Column - Enhanced Terminal/Projects */}
-            <div className="flex-1 flex items-center justify-center p-6 relative">
-              {/* Background Tech Grid */}
+          {/* Skills Grid - Top Right */}
+          <div className="col-span-12 lg:col-span-8">
+            <div className="p-6 rounded-xl" style={{
+              background: `linear-gradient(135deg, ${currentTheme.terminalBg}90, ${currentTheme.terminalHeader}40)`,
+              border: `1px solid ${currentTheme.variable}30`,
+              boxShadow: `0 8px 32px ${currentTheme.terminalBorder}15`
+            }}>
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{
+                  backgroundColor: currentTheme.variable + '20',
+                  border: `1px solid ${currentTheme.variable}40`
+                }}>
+                  <span style={{ fontSize: '1rem' }}>⚡</span>
+                </div>
+                <h3 style={{
+                  color: currentTheme.textPrimary,
+                  fontFamily: '"Inter", sans-serif',
+                  fontSize: '1.2rem',
+                  fontWeight: 700
+                }}>
+                  Core Skills
+                </h3>
+              </div>
+
+              <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+                {[
+                  { name: 'Python', icon: '🐍', color: '#3B82F6' },
+                  { name: 'React', icon: '⚛️', color: '#10B981' },
+                  { name: 'AI/ML', icon: '🤖', color: '#8B5CF6' },
+                  { name: 'Node.js', icon: '📗', color: '#F59E0B' },
+                  { name: 'Docker', icon: '🐳', color: '#06B6D4' },
+                  { name: 'AWS', icon: '☁️', color: '#EF4444' }
+                ].map((skill, i) => (
+                  <div
+                    key={skill.name}
+                    className="p-4 rounded-lg transition-all duration-200 hover:scale-[1.02] text-center"
+                    style={{
+                      background: `linear-gradient(135deg, ${currentTheme.terminalHeader}60, ${currentTheme.terminalBg}80)`,
+                      border: `1px solid ${skill.color}30`
+                    }}
+                  >
+                    <div className="text-2xl mb-2">{skill.icon}</div>
+                    <div style={{
+                      color: currentTheme.textPrimary,
+                      fontSize: '0.9rem',
+                      fontWeight: 600,
+                      fontFamily: '"Inter", sans-serif'
+                    }}>
+                      {skill.name}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Terminal - Full Width Bottom */}
+          <div className="col-span-12">
+            <div className="p-6 rounded-xl relative overflow-hidden" style={{
+              background: `linear-gradient(135deg, ${currentTheme.terminalBg}95, ${currentTheme.terminalHeader}30)`,
+              border: `1px solid ${currentTheme.variable}20`,
+              boxShadow: `0 8px 32px ${currentTheme.terminalBorder}15`,
+              minHeight: '60vh'
+            }}>
+              {/* Background Pattern */}
               <div className="absolute inset-0 opacity-5" style={{
-                backgroundImage: `
-                  linear-gradient(${currentTheme.variable}20 1px, transparent 1px),
-                  linear-gradient(90deg, ${currentTheme.variable}20 1px, transparent 1px)
-                `,
-                backgroundSize: '30px 30px',
-                animation: 'grid-drift 30s linear infinite'
+                backgroundImage: `radial-gradient(circle at 20px 20px, ${currentTheme.variable} 1px, transparent 1px)`,
+                backgroundSize: '40px 40px'
               }}></div>
 
-              {/* Floating Tech Elements */}
-              <div className="absolute top-10 right-10 opacity-20 text-4xl animate-pulse" style={{
-                animationDuration: '4s',
-                color: currentTheme.variable
-              }}>
-                {'{ }'}
-              </div>
-              <div className="absolute bottom-20 left-10 opacity-15 text-2xl" style={{
-                fontFamily: '"JetBrains Mono", monospace',
-                color: currentTheme.variable,
-                animation: 'float 6s ease-in-out infinite'
-              }}>
-                &lt;/&gt;
-              </div>
-
-              {/* Main Terminal Container */}
-              <div className="relative w-full h-full max-h-[80vh] rounded-lg overflow-hidden" style={{
-                boxShadow: `
-                  0 25px 50px -12px ${currentTheme.terminalBorder}40,
-                  0 0 0 1px ${currentTheme.variable}20,
-                  inset 0 1px 0 ${currentTheme.variable}10
-                `,
-                background: `linear-gradient(135deg, ${currentTheme.terminalBg}95, ${currentTheme.terminalHeader}30)`
-              }}>
-                {/* Terminal Header Enhancement */}
-                <div className="absolute top-0 left-0 right-0 h-8 flex items-center justify-between px-4 z-10" style={{
-                  background: `linear-gradient(90deg, ${currentTheme.terminalHeader}, ${currentTheme.terminalHeader}80)`,
-                  borderBottom: `2px solid ${currentTheme.variable}30`
+              {/* Terminal Header */}
+              <div className="flex items-center gap-3 mb-6 relative z-10">
+                <div className="flex gap-2">
+                  <div className="w-3 h-3 rounded-full bg-red-500 opacity-80"></div>
+                  <div className="w-3 h-3 rounded-full bg-yellow-500 opacity-80"></div>
+                  <div className="w-3 h-3 rounded-full bg-green-500 opacity-80 animate-pulse"></div>
+                </div>
+                <h3 style={{
+                  color: currentTheme.textPrimary,
+                  fontFamily: '"JetBrains Mono", monospace',
+                  fontSize: '1rem',
+                  fontWeight: 700
                 }}>
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 rounded-full bg-red-500 opacity-80"></div>
-                    <div className="w-3 h-3 rounded-full bg-yellow-500 opacity-80"></div>
-                    <div className="w-3 h-3 rounded-full bg-green-500 opacity-80 animate-pulse"></div>
-                  </div>
-                  <div style={{
-                    fontFamily: '"JetBrains Mono", monospace',
-                    fontSize: '0.7rem',
-                    color: currentTheme.textSecondary,
-                    letterSpacing: '0.05em'
-                  }}>
-                    benjamin@devbox:~$
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <div className="w-1 h-1 rounded-full animate-pulse" style={{ backgroundColor: currentTheme.variable }}></div>
-                    <div className="w-1 h-1 rounded-full animate-pulse" style={{ backgroundColor: currentTheme.variable, animationDelay: '0.3s' }}></div>
-                    <div className="w-1 h-1 rounded-full animate-pulse" style={{ backgroundColor: currentTheme.variable, animationDelay: '0.6s' }}></div>
-                  </div>
-                </div>
-
-                {/* Enhanced Terminal Component */}
-                <div className="pt-8">
-                  <Terminal className="w-full h-full" style={{
-                    maxWidth: 'none',
-                    maxHeight: 'calc(80vh - 2rem)',
-                    background: 'transparent'
-                  }} />
-                </div>
-
-                {/* Scan line effect */}
-                <div className="absolute top-0 left-0 right-0 h-0.5 opacity-30" style={{
-                  background: `linear-gradient(90deg, transparent, ${currentTheme.variable}, transparent)`,
-                  animation: 'scanline 3s ease-in-out infinite'
+                  Portfolio Terminal
+                </h3>
+                <div className="flex-1 h-px" style={{
+                  background: `linear-gradient(to right, ${currentTheme.variable}40, transparent)`
                 }}></div>
               </div>
 
-              {/* Corner Tech Decorations */}
-              <div className="absolute top-0 right-0 w-20 h-20 opacity-10" style={{
-                background: `radial-gradient(circle, ${currentTheme.variable}40, transparent)`,
-                clipPath: 'polygon(100% 0, 0 0, 100% 100%)'
-              }}></div>
-              <div className="absolute bottom-0 left-0 w-20 h-20 opacity-10" style={{
-                background: `radial-gradient(circle, ${currentTheme.variable}40, transparent)`,
-                clipPath: 'polygon(0 100%, 0 0, 100% 100%)'
-              }}></div>
+              {/* Terminal Content */}
+              <div className="relative z-10 h-full">
+                <Terminal className="w-full h-full" style={{
+                  maxWidth: 'none',
+                  minHeight: '50vh',
+                  background: 'transparent'
+                }} />
+              </div>
             </div>
+          </div>
           </div>
         </div>
 
