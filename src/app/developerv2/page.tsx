@@ -189,7 +189,7 @@ export default function DeveloperV2Page() {
     setIsClient(true)
 
     // Add scroll event listener for shuffle animation
-    let scrollTimeout
+    let scrollTimeout: NodeJS.Timeout
     const handleScroll = () => {
       setShuffleActive(true)
 
@@ -279,8 +279,8 @@ export default function DeveloperV2Page() {
                   } // Row 3, Column 12 (0-indexed: 35) - all social media in one box
                 }
 
-                const selectedBoxes = []
-                const usedBoxes = []
+                const selectedBoxes: any[] = []
+                const usedBoxes: number[] = []
 
                 // First, place fixed position labels
                 Object.entries(fixedPositions).forEach(([key, position]) => {
@@ -508,7 +508,7 @@ export default function DeveloperV2Page() {
                               )}
                             </div>
                           ) : isClickable ? (
-                            <a
+                            <Link
                               href="/"
                               className="transition-all duration-100 cursor-pointer inline-block"
                               style={{
@@ -527,7 +527,7 @@ export default function DeveloperV2Page() {
                               }}
                             >
                               {label}
-                            </a>
+                            </Link>
                           ) : isScrollable ? (
                             <span
                               className="transition-all duration-100 cursor-pointer inline-block"
