@@ -240,7 +240,7 @@ export default function DeveloperV2Page() {
         }}>
           <div className="relative overflow-hidden w-full" style={{
             height: '80vh',
-            background: 'rgb(80, 80, 80)',
+            background: 'rgb(40, 40, 40)',
             borderRadius: '1.5rem'
           }}>
             {/* Grid of Interactive Boxes */}
