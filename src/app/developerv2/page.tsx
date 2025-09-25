@@ -133,7 +133,7 @@ export default function DeveloperV2Page() {
   const [displayedName, setDisplayedName] = useState('')
   const [displayedTitle, setDisplayedTitle] = useState('')
   const [showCursor, setShowCursor] = useState(true)
-  const [activeDropdown, setActiveDropdown] = useState(null)
+  const [activeDropdown, setActiveDropdown] = useState<number | null>(null)
   const [isClient, setIsClient] = useState(false)
   const [shuffleActive, setShuffleActive] = useState(false)
 
@@ -250,7 +250,16 @@ export default function DeveloperV2Page() {
                 const corners = ['top-left', 'top-right', 'bottom-left', 'bottom-right']
 
                 // Define specific positions for certain labels
-                const fixedPositions = {
+                interface FixedPosition {
+                  boxIndex: number;
+                  corner: string;
+                  label?: string;
+                  type?: string;
+                  options?: Array<{ label: string; action: () => void }>;
+                  labels?: string[];
+                }
+
+                const fixedPositions: Record<string, FixedPosition> = {
                   'HOME': { boxIndex: 0, corner: 'top-left', label: 'cd ~/' }, // First box (0-indexed: 0) - home navigation
                   'EXPERIENCE': { boxIndex: 3, corner: 'bottom-left', label: 'EXP' }, // Row 1, Column 4 (0-indexed: 3) - left bottom align
                   'WHO': { boxIndex: 8, corner: 'bottom-left' }, // Row 1, Column 9 (0-indexed: 8) - left align
@@ -279,7 +288,20 @@ export default function DeveloperV2Page() {
                   } // Row 3, Column 12 (0-indexed: 35) - all social media in one box
                 }
 
-                const selectedBoxes: any[] = []
+                interface SelectedBox {
+                  label?: string;
+                  labels?: string[];
+                  boxIndex: number;
+                  corner: string;
+                  isMultiple?: boolean;
+                  isDropdown?: boolean;
+                  isClickable?: boolean;
+                  isScrollable?: boolean;
+                  scrollTarget?: string;
+                  options?: Array<{ label: string; action: () => void }>;
+                }
+
+                const selectedBoxes: SelectedBox[] = []
                 const usedBoxes: number[] = []
 
                 // First, place fixed position labels
@@ -393,8 +415,8 @@ export default function DeveloperV2Page() {
                         >
                           {isMultiple ? (
                             <div className="flex flex-col gap-2 items-end text-right">
-                              {multipleLabels.map((multiLabel, idx) => {
-                                const socialLinks = {
+                              {multipleLabels?.map((multiLabel, idx) => {
+                                const socialLinks: Record<string, string> = {
                                   'GITHUB': 'https://github.com/benuh',
                                   'LINKEDIN': 'https://www.linkedin.com/in/benjamin-hu-556104176/',
                                   'X': 'https://x.com/benerichu',
@@ -469,12 +491,12 @@ export default function DeveloperV2Page() {
                                     right: '0'
                                   }}
                                 >
-                                  {dropdownOptions.map((option, optionIdx) => (
+                                  {dropdownOptions?.map((option, optionIdx) => (
                                     <button
                                       key={option.label}
                                       className={`w-full py-1 transition-all duration-200 hover:bg-white/10 ${
-                                        corner.includes('left') ? 'text-left' :
-                                        corner.includes('right') ? 'text-right' :
+                                        corner?.includes('left') ? 'text-left' :
+                                        corner?.includes('right') ? 'text-right' :
                                         'text-center'
                                       }`}
                                       style={{
@@ -486,8 +508,8 @@ export default function DeveloperV2Page() {
                                         backgroundColor: 'transparent',
                                         border: 'none',
                                         cursor: 'pointer',
-                                        paddingLeft: corner.includes('left') ? '0.25rem' : '0.75rem',
-                                        paddingRight: corner.includes('right') ? '0.5rem' : '0.75rem'
+                                        paddingLeft: corner?.includes('left') ? '0.25rem' : '0.75rem',
+                                        paddingRight: corner?.includes('right') ? '0.5rem' : '0.75rem'
                                       }}
                                       onClick={(e) => {
                                         e.stopPropagation()
@@ -539,7 +561,7 @@ export default function DeveloperV2Page() {
                                 letterSpacing: '0.1em',
                                 textTransform: 'uppercase'
                               }}
-                              onClick={() => scrollToSection(scrollTarget)}
+                              onClick={() => scrollTarget && scrollToSection(scrollTarget)}
                               onMouseEnter={(e) => {
                                 e.currentTarget.style.animation = 'tv-static 0.1s infinite'
                               }}
