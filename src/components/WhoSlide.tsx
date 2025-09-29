@@ -51,7 +51,6 @@ export default function WhoSlide() {
               const buildingHeight = Math.random() * 95 + 20;
               const buildingColor = ['#000000', '#0d1117', '#1a1a1a', '#262626', '#333333', '#404040', '#4d4d4d', '#595959', '#666666'][Math.floor(Math.random() * 9)];
               const marginRight = Math.random() * 20 - 15; // Allow negative margins for overlap
-              const windowCount = Math.floor(Math.random() * 16 + 4);
               const buildingType = Math.floor(Math.random() * 10); // More building types
               const zIndex = Math.floor(Math.random() * 10) + 1; // Random depth layering
 
@@ -187,7 +186,7 @@ export default function WhoSlide() {
           lineHeight: '1.6',
           margin: 0
         }}>
-          I'm a software developer who loves building digital solutions that make a real difference. I work as a full-stack engineer and constantly enjoy learning new technologies to expand my knowledge and skills. My passion lies in creating practical applications that solve real-world problems while exploring the intersection of technology and creativity in every project I work on.
+          I&apos;m a software developer who loves building digital solutions that make a real difference. I work as a full-stack engineer and constantly enjoy learning new technologies to expand my knowledge and skills. My passion lies in creating practical applications that solve real-world problems while exploring the intersection of technology and creativity in every project I work on.
         </p>
       </div>
     </div>

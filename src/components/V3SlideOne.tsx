@@ -28,7 +28,7 @@ export default function V3SlideOne() {
             letterSpacing: '0.05em',
             margin: 0
           }}>
-            Here's how we got from 0 to 1
+            Here&apos;s how we got from 0 to 1
           </p>
         </div>
 
@@ -49,7 +49,7 @@ export default function V3SlideOne() {
             lineHeight: '1.6',
             margin: '1rem 0 0 0'
           }}>
-            I help individuals and companies understand, develop, and position their products while solving their users' pain points.
+            I help individuals and companies understand, develop, and position their products while solving their users&apos; pain points.
           </p>
         </div>
       </div>

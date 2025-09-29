@@ -27,7 +27,7 @@ export default function AboutSlide() {
             marginBottom: '2rem',
             fontWeight: 400
           }}>
-            I'm a passionate software developer with expertise in full-stack development,
+            I&apos;m a passionate software developer with expertise in full-stack development,
             machine learning, and creating innovative digital experiences.
           </p>
 

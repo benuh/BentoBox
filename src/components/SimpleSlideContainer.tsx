@@ -13,9 +13,12 @@ export default function SimpleSlideContainer({ slides }: SimpleSlideContainerPro
   const [showPanelView, setShowPanelView] = useState(false)
   const [scrollProgress, setScrollProgress] = useState(0)
   const [isScrolling, setIsScrolling] = useState(false)
+  const [direction, setDirection] = useState(1)
   const containerRef = useRef<HTMLDivElement>(null)
   const scrollAccumulator = useRef(0)
   const scrollDirection = useRef(0)
+  const lastScrollTime = useRef(0)
+  const scrollCooldown = 150
 
   const handleScroll = useCallback((e: WheelEvent) => {
     e.preventDefault()

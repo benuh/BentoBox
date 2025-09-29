@@ -76,12 +76,12 @@ export default function SimpleSlideTransition({
   React.useEffect(() => {
     const container = document.querySelector('.slide-container')
     if (container) {
-      container.addEventListener('wheel', handleWheel, { passive: false })
+      container.addEventListener('wheel', handleWheel as EventListener, { passive: false })
     }
 
     return () => {
       if (container) {
-        container.removeEventListener('wheel', handleWheel)
+        container.removeEventListener('wheel', handleWheel as EventListener)
       }
       if (scrollTimeoutRef.current) {
         clearTimeout(scrollTimeoutRef.current)

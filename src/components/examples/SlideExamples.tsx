@@ -139,7 +139,7 @@ export function DynamicSlideExample() {
         {slideCount === 0 && (
           <div className="bg-gray-500 text-white p-8 rounded-lg text-center">
             <h2 className="text-3xl font-bold">No Slides Yet</h2>
-            <p className="mt-4">Click "Add Slide" to create your first slide!</p>
+            <p className="mt-4">Click &quot;Add Slide&quot; to create your first slide!</p>
           </div>
         )}
 
